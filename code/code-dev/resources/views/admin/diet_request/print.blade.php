@@ -70,7 +70,7 @@
                     @foreach($details as $d)
                         @if($d->iddiet == "1")
                             @if(!$loop->last || $loop->count = 1)                                
-                                {{ $d->bed_number  }}
+                               <STRONG> {{ $d->bed_number  }} </STRONG>
                             @else
                                 {{ $d->bed_number.', ' }}
                             @endif                            
@@ -504,11 +504,11 @@
                 <TH ROWSPAN="3" colspan="2" ALIGN="center" >OTRAS (Especificar)</TH>
                 <TD colspan="2" height="15">
                     @foreach($details as $d)
-                        @if($d->iddiet == "17")
+                        @if($d->iddiet == "21" || $d->iddiet == "22")
                             @if($loop->last || $loop->count = 1)
-                                {{ $d->specify }}
+                                {{ $d->bed_number.' (BP)' }}
                             @else
-                                {{ $d->specify.', ' }}
+                                {{ $d->bed_number.' (BP)'.', ' }}
                             @endif                            
                         @endif
                     @endforeach
