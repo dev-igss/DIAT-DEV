@@ -38,6 +38,65 @@
         endif;
     }
 
+    function getTypeDiet($mode, $id){
+        $roles = [
+            '0' => 'Sin Selección',
+            '1' => 'Ingreso',
+            '2' => 'Egreso',
+            '3' => 'Empacada'
+        ];
+
+        if(!is_null($mode)):
+            return $roles;
+        else:
+            return $roles[$id];
+        endif;
+    }
+
+    function getTypeDiet1($mode, $id){
+        $roles = [
+            '0' => 'Sin Selección',
+            '1' => 'Diabetica',
+            '2' => 'Hiposodica',
+            '3' => 'Diabetica/Hiposodica'
+        ];
+
+        if(!is_null($mode)):
+            return $roles;
+        else:
+            return $roles[$id];
+        endif;
+    }
+
+    function getTypeDietHiposodicas($mode, $id){
+        $roles = [
+            '0' => 'Sin Selección',
+            '1' => 'Baja en Fosforo',
+            '2' => 'Alta en Fosforo',
+            '3' => 'Baja en Potasio',
+            '4' => 'Alta en Potasio'
+        ];
+
+        if(!is_null($mode)):
+            return $roles;
+        else:
+            return $roles[$id];
+        endif;
+    }
+
+    function getTypeDietRenal($mode, $id){
+        $roles = [
+            '0' => 'Sin Selección',
+            '1' => 'Diabetica'
+        ];
+
+        if(!is_null($mode)):
+            return $roles;
+        else:
+            return $roles[$id];
+        endif;
+    }
+
     function getUserStatusArray($mode, $id){
         $status = [
             '0' => 'Suspendido',

@@ -61,7 +61,7 @@
                 </div>
 
                     <div class="row">
-                        <div class="col-md-6 mtop16">
+                        <div class="col-md-3 mtop16">
                             <label><strong> Dieta: </strong></label>
                             <div class="input-group">                                
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
@@ -70,19 +70,43 @@
                             </div>
                         </div>
 
-                        <div class="col-md-5 mtop16" id="div-cantidad">
+                        <div class="col-md-2 mtop16">
                             <label for="cantidad"><strong> Número de Cama: </strong></label>
                             <div class="input-group">                                
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
-                                {!! Form::number('pcantidad', null, ['class'=>'form-control', 'id' => 'pcantidad']) !!}
+                                {!! Form::number('pcantidad', null, ['class'=>'form-control', 'id' => 'pcantidad', 'min'=>'1']) !!}
                             </div>
                         </div>
 
-                        <div class="col-md-5 mtop16" id="div-especificar">
-                            <label for="cantidad"><strong> Especificar: </strong></label>
+                        <div class="col-md-2 mtop16">
+                            <label><strong> Tipo Dieta: </strong></label>
                             <div class="input-group">                                
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
-                                {!! Form::text('pespecificar', null, ['class'=>'form-control', 'id' => 'pespecificar']) !!}
+                                {!! Form::select('pidarticulo1', getTypeDiet('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo1']) !!}                                
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mtop16" id="div-tipo-dietas-1">
+                            <label for="cantidad"><strong> Tipo Dieta: </strong></label>
+                            <div class="input-group">                                
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
+                                {!! Form::select('pidarticulo2', getTypeDiet1('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo2']) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mtop16" id="div-tipo-dietas-hiposodicas">
+                            <label for="cantidad"><strong> Tipo Dieta Hiposodica: </strong></label>
+                            <div class="input-group">                                
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
+                                {!! Form::select('pidarticulo3', getTypeDietHiposodicas('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo3']) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mtop16" id="div-tipo-dietas-renal">
+                            <label for="cantidad"><strong> Tipo Dieta Renal: </strong></label>
+                            <div class="input-group">                                
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
+                                {!! Form::select('pidarticulo4', getTypeDietRenal('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo4']) !!}
                             </div>
                         </div>
 
@@ -100,7 +124,6 @@
                                 <th><strong> ELIMINAR </strong></th>
                                 <th><strong> DIETA </strong></th>
                                 <th><strong> CAMA </strong></th>
-                                <th><strong> ESPECIFICAR </strong></th>
                             </thead>
 
                             <tbody>
@@ -132,20 +155,44 @@
             });
 
             var typediet = document.getElementById('pidarticulo');         
-            console.log(typediet.value);
-            var bed = document.getElementById('div-cantidad');
-            var especificar = document.getElementById('div-especificar');
-            bed.hidden = false;
-            especificar.hidden = true;
+            
 
-            $('#pidarticulo').click(function(){
-                if(typediet.value  == 17){
+            var tipo_dietas_1 = document.getElementById('div-tipo-dietas-1');
+            tipo_dietas_1.hidden = false;
+            var tipo_dietas_hiposodicas = document.getElementById('div-tipo-dietas-hiposodicas');
+            tipo_dietas_hiposodicas.hidden = true;
+
+            var tipo_dietas_renal = document.getElementById('div-tipo-dietas-renal');
+            tipo_dietas_renal.hidden = true;
+
+            $('#pidarticulo').change(function(){
+                /*if(typediet.value  == 17){
                     bed.hidden = true;
                     especificar.hidden = false;
                 }else{
                     bed.hidden = false;
                     especificar.hidden = true;                    
+                }*/
+
+                //console.log(typediet.value);
+                if(typediet.value  == 1 || typediet.value  == 2 || typediet.value  == 4 || typediet.value  == 5){
+                    tipo_dietas_1.hidden = false;
+                }else{
+                    tipo_dietas_1.hidden = true;
                 }
+                
+                if(typediet.value == 7){
+                    tipo_dietas_hiposodicas.hidden = false;
+                }else{
+                    tipo_dietas_hiposodicas.hidden = true;
+                }
+
+                if(typediet.value == 26){
+                    tipo_dietas_renal.hidden = false;
+                }else{
+                    tipo_dietas_renal.hidden = true;
+                }
+
 
                 
             });
@@ -162,10 +209,9 @@
             idarticulo=$("#pidarticulo").val();
             articulo=$("#pidarticulo option:selected").text();
             cantidad=$("#pcantidad").val();
-            especificar= $("#pespecificar").val();
 
-            if (idarticulo!=""){
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" name="especificar[]" value="'+especificar+'">'+especificar+'</td></tr>';
+            if (idarticulo!="" && cantidad > 0){
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td></tr>';
                 cont++;
                 limpiar();
                 evaluar();
@@ -177,7 +223,6 @@
 
         function limpiar(){
             $("#pcantidad").val("");
-            $("#pespecificar").val("");
         }
 
         function evaluar()

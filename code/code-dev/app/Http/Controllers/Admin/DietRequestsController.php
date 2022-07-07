@@ -47,7 +47,7 @@ class DietRequestsController extends Controller
     public function getDietRequestAdd(){
         
         $journeys = Journey::get();
-        $diets = Diet::pluck('name','id');
+        $diets = Diet::where('id','<>',17)->pluck('name','id');
         $services = Service::where('type','1')
             ->where('unit_id', '1')
             ->get();

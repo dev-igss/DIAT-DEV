@@ -23,6 +23,11 @@
                             <li><a href="{{url('/admin/solicitud_dietas/all')}}"><i class="fas fa-boxes"></i> Todas</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="{{ url('/admin/solicitud_dieta/solicitar') }}" ><i class="fa-solid fa-file-invoice"></i> Impresión Lote</a>
+                    </li>
+
+                    
                     @if(kvfj(Auth::user()->permissions, 'diet_request_add'))
                         <li>
                             <a href="{{ url('/admin/solicitud_dieta/solicitar') }}" ><i class="fas fa-plus-circle"></i> Nueva Solicitud</a>
