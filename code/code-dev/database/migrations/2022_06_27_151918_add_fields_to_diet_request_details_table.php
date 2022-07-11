@@ -17,7 +17,7 @@ class AddFieldsToDietRequestDetailsTable extends Migration
             $table->integer('type_pack')->after('bed_number')->nullable();
             $table->integer('type_diet_1')->after('type_pack')->nullable();
             $table->integer('type_diet_hiposodicas')->after('type_diet_1')->nullable();
-            $table->integer('type_diet_renal')->after('type_diet_hiposodicas')->nullable();
+            $table->integer('type_diet_renal')->after('type_diet_hiposodicas')->nullable(); 
         });
     }
 

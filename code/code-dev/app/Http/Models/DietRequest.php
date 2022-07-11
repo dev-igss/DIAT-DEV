@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DietRequest extends Model
 {
-    
+
     use HasFactory;
 
     use SoftDeletes;
@@ -18,7 +18,7 @@ class DietRequest extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     public function details(){
-        return $this->hasOne(DietRequestDetail::class,'iddiet','id');
+        return $this->hasOne(DietRequestDetail::class,'iddiet_request','id');
     }
 
     public function journey(){
@@ -31,5 +31,9 @@ class DietRequest extends Model
 
     public function user(){
         return $this->hasOne(User::class,'id', 'idapplicant');
+    }
+
+    public function user_served(){
+        return $this->hasOne(User::class,'id', 'iduser_served');
     }
 }

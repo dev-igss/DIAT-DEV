@@ -13,8 +13,9 @@
             '0' => 'Administrador del Sistema',
             '1' => 'Administrador de Unidad',
             '2' => 'Jefe de Alimentacion',
-            '3' => 'Dietista',
-            '4' => 'Jefe de Servicio'
+            '3' => 'Encargado de Dietistas',
+            '4' => 'Dietista',
+            '5' => 'Jefe de Servicio'
         ];
 
         if(!is_null($mode)):
@@ -26,9 +27,10 @@
 
     function getDietStatusArray($mode, $id){
         $roles = [
-            '0' => 'Activa',
-            '1' => 'Servida',
-            '2' => 'Eliminada'
+            '0' => 'Pre-Solicitud',
+            '1' => 'Registrada',
+            '2' => 'Servida',
+            '3' => 'Anulada'
         ];
 
         if(!is_null($mode)):
@@ -43,7 +45,9 @@
             '0' => 'Sin Selección',
             '1' => 'Ingreso',
             '2' => 'Egreso',
-            '3' => 'Empacada'
+            '3' => 'Empacada',
+            '4' => 'Ingreso/Empacada',
+            '5' => 'Egreso/Empacada',
         ];
 
         if(!is_null($mode)):
@@ -107,6 +111,24 @@
             return $status;
         else:
             return $status[$id];
+        endif;
+    }
+
+    function getTimeRequestsOut($mode, $id){
+        $roles = [
+            '0' => 'Sin Seleccionar',
+            '1' => '5 min.',
+            '2' => '10 min.',
+            '3' => '15 min.',
+            '4' => '20 min.',
+            '5' => '25 min.',
+            '6' => '30 min.'
+        ];
+
+        if(!is_null($mode)):
+            return $roles;
+        else:
+            return $roles[$id];
         endif;
     }
 
@@ -185,7 +207,7 @@
                     'journey_edit' => 'Puede editar jornadas.',
                     'journey_delete' => 'Puede eliminar jornadas.'
                 ]
-            ], 
+            ],
             'diet_request' => [
                 'icon' => '<i class="fas fa-file-alt"></i>',
                 'title' => 'Módulo de Solicitudes de Dietas',
@@ -193,9 +215,12 @@
                     'diet_requests' => 'Puede ver el listado de solicitudes de dietas.',
                     'diet_request_add' => 'Puede agregar nuevas solicitudes de dietas.',
                     'diet_request_view' => 'Puede ver el detalle de solicitudes de dietas.',
+                    'diet_request_print' => 'Puede imprimir solicitudes de dietas.',
+                    'diet_request_print_journey' => 'Puede imprimir solicitudes de dietas por jornada.',
+                    'diet_request_served' => 'Puede marcar como servidas las solicitudes de dietas.',
                     'diet_request_delete' => 'Puede eliminar solicitudes de dietas.'
                 ]
-            ],                       
+            ],
             'reports' => [
                 'icon' => '<i class="fas fa-cubes"></i>',
                 'title' => 'Módulo de Reportes',
@@ -225,6 +250,7 @@
                     'user_delete' => 'Puede eliminar usuarios.',
                     'user_reset_password' => 'Puede restablecer contraseña de usuarios.',
                     'user_permissions' => 'Puede administrar los permisos de los usuarios.',
+                    'user_requests_out' => 'Puede habilitar solicitudes de dietas, fuera del tiempo establecido',
                     'user_info' => 'Puede ver información de su cuenta',
                     'user_change_password' => 'Puede cambiar su contraseña de inicio de sesión'
 

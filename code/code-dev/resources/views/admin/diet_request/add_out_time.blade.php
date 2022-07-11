@@ -6,7 +6,7 @@
         <a href="{{ url('/admin/kardex/all') }}" class="nav-link"><i class="fas fa-server"></i> Solicitud de Dietas</a>
     </li>
     <li class="breadcrumb-item">
-        <a href="{{ url('/admin/kardex/income/add') }}" class="nav-link"><i class="fas fa-plus-circle"></i> Registrar Nueva Solicitud</a>
+        <a href="{{ url('/admin/kardex/income/add') }}" class="nav-link"><i class="fas fa-plus-circle"></i> Registrar Solicitud Fuera de Tiempo</a>
     </li>
 @endsection
 
@@ -15,7 +15,7 @@
         <div class="panel shadow">
 
             <div class="header">
-                <h2 class="title"><i class="fas fa-plus-circle"></i> <strong> Registrar Nueva Solicitud</strong></h2>
+                <h2 class="title"><i class="fas fa-plus-circle"></i> <strong> Registrar Solicitud Fuera de Tiempo</strong></h2>
             </div>
 
             <div class="inside">
@@ -23,16 +23,27 @@
                 {{Form::token()}}
 
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="idsupplier"><strong><sup style="color: red;">(*)</sup> Jornada: </strong></label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
-                            <select name="idjourney" id="idsupplier" style="width: 96%" >
+                            <select name="idjourney" id="idsupplier" style="width: 90%" >
                                 @foreach ($journeys as $j)
                                     <option value=""></option>
                                     <option value="{{$j->id}}">{{$j->name.' '.$j->start_time.' - '.$j->end_time}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <label for="name"><strong> Dietas Disponibles: </strong></label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
+                            {!! Form::text('cantidad_dietas', $cantidad_dietas, ['class'=>'form-control', 'readonly', 'id'=>'cantidad_dietas']) !!}
+                            {!! Form::hidden('solicitud_fuera_tiempo', $solicitud_fuera_tiempo, ['class'=>'form-control', 'readonly']) !!}
+                            {!! Form::hidden('solicitud_fuera_id', $solicitud_fuera_id, ['class'=>'form-control', 'readonly']) !!}
+
                         </div>
                     </div>
 
@@ -206,7 +217,7 @@
         });
 
 
-        var cont=0;
+        var cont=0, control_fuera = 1;
         total=0;
         subtotal=[];
         $("#guardar").hide();
@@ -226,15 +237,24 @@
             idcaracteristica4=$("#pidarticulo4").val();
             caracteristica4=$("#pidarticulo4 option:selected").text();
 
-            if (idarticulo!="" && cantidad > 0){
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td> <td><input type="hidden" name="idcaracteristica1[]" value="'+idcaracteristica1+'">'+caracteristica1+'</td> <td><input type="hidden" name="idcaracteristica2[]" value="'+idcaracteristica2+'">'+caracteristica2+'</td> <td><input type="hidden" name="idcaracteristica3[]" value="'+idcaracteristica3+'">'+caracteristica3+'</td> <td><input type="hidden" name="idcaracteristica4[]" value="'+idcaracteristica4+'">'+caracteristica4+'</td></tr>';
-                cont++;
-                limpiar();
-                evaluar();
-                $('#detalles').append(fila);
+            cantidad_dietas=$("#cantidad_dietas").val();
+
+            if(control_fuera>cantidad_dietas){
+                alert("¡Error! No puede ingresar mas dietas de las autorizadas para esta solicitud.")
             }else{
-                alert("Error al ingresar el detalle del ingreso, revise los datos de la dieta")
+                if (idarticulo!="" && cantidad > 0){
+                    var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td> <td><input type="hidden" name="idcaracteristica1[]" value="'+idcaracteristica1+'">'+caracteristica1+'</td> <td><input type="hidden" name="idcaracteristica2[]" value="'+idcaracteristica2+'">'+caracteristica2+'</td> <td><input type="hidden" name="idcaracteristica3[]" value="'+idcaracteristica3+'">'+caracteristica3+'</td> <td><input type="hidden" name="idcaracteristica4[]" value="'+idcaracteristica4+'">'+caracteristica4+'</td></tr>';
+                    cont++;
+                    control_fuera++;
+                    limpiar();
+                    evaluar();
+                    $('#detalles').append(fila);
+                }else{
+                    alert("¡Error! Al ingresar el detalle de la dieta, revise los datos de la misma.")
+                }
             }
+
+
         }
 
         function limpiar(){
@@ -256,6 +276,7 @@
 
         function eliminar(index){
             $("#fila" + index).remove();
+            control_fuera--;
             evaluar();
         }
 
