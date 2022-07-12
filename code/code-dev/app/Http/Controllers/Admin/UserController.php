@@ -24,8 +24,16 @@ class UserController extends Controller
                 $users = User::all();
             break;
 
+            case 3:
+                $users = User::whereIn('role', ['4', '5'])->where('id', '<>' ,'1')->where('id', '<>' ,'2')->where('id', '<>' ,'3')->where('id', '<>' ,'4')->where('id', '<>' ,'36')->get();
+            break;
+
             case 4:
                 $users = User::where('role', '5')->where('id', '<>' ,'3')->get();
+            break;
+
+            case 5:
+                $users = User::whereIn('role', ['3', '4', '5'])->where('id', '<>' ,'1')->where('id', '<>' ,'2')->where('id', '<>' ,'3')->where('id', '<>' ,'4')->where('id', '<>' ,'36')->get();
             break;
 
         endswitch;

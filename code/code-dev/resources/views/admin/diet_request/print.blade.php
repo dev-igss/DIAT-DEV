@@ -39,11 +39,11 @@
         <br><br>
 
         <div style="float: left; margin-top: 5px; margin-left: 0px; width:300px;height:25px;" >
-            Tiempo de Alimentacion: <input type="text" style="border:1px solid #000000;width:150px; text-align: center; margin-top: 5px; margin-left: 0px;" value="{{ $diet_request->journey->name }}">
+            Tiempo de Alimentacion: <input type="text" style="border:1px solid #000000;width:150px; text-align: center; margin-top: -25px; margin-left: 150px;" value="{{ $diet_request->journey->name }}">
         </div>
 
         <div style="float: right; margin-top: 5px; margin-right: 50px; width:150px;height:25px;">
-            Fecha: <input type="text" style="border:1px solid #000000;width:150px; text-align: center; margin-top: 5px; margin-left: 0px;" value="{{ \Carbon\Carbon::parse($diet_request->created_at)->format('d-m-Y')  }}">
+            Fecha: <input type="text" style="border:1px solid #000000;width:150px; text-align: center; margin-top: -25px; margin-left: 45px;" value="{{ \Carbon\Carbon::parse($diet_request->created_at)->format('d-m-Y')  }}">
         </div>
 
         <table width="100%"  style=" margin-top:40px; text-align: center; font-size: 12px;" >

@@ -13,11 +13,11 @@
             '0' => 'Administrador del Sistema',
             '1' => 'Administrador de Unidad',
             '2' => 'Jefe de Alimentacion',
-            '3' => 'Encargado de Dietistas',
+            '3' => 'Encargado de Dietistas', 
             '4' => 'Dietista',
             '5' => 'Jefe de Servicio'
         ];
-
+ 
         if(!is_null($mode)):
             return $roles;
         else:
