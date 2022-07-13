@@ -13,7 +13,7 @@
             <div class="col-md-4">
                 @if(kvfj(Auth::user()->permissions, 'user_add'))
                     <div class="panel shadow">
-                        <div class="header"> 
+                        <div class="header">
                             <h2 class="title"><i class="fas fa-plus-circle"></i> <strong>Agregar Usuario</strong></h2>
                         </div>
 
@@ -70,6 +70,9 @@
                                                 @endif
                                                 @if(kvfj(Auth::user()->permissions, 'user_permissions'))
                                                     <a href="{{ url('/admin/usuario/'.$user->id.'/permisos') }}" data-toogle="tooltrip" data-placement="top" title="Permisos"><i class="fas fa-cogs"></i></a>
+                                                @endif
+                                                @if(kvfj(Auth::user()->permissions, 'user_requests_out') && $user->role == 5)
+                                                    <a href="{{ url('/admin/usuario/'.$user->id.'/solicitudes_fuera_de_tiempo') }}" data-toogle="tooltrip" data-placement="top" title="Solicitudes Fuera de Tiempo"><i class="fa-solid fa-clock-rotate-left"></i></a>
                                                 @endif
                                             </div>
                                         </td>

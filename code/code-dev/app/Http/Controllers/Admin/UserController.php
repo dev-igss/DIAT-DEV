@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\User, App\Http\Models\Unit, App\Http\Models\Service, App\Http\Models\Bitacora;
-use Validator, Auth, Hash, Config;
+use App\User, App\Http\Models\Unit, App\Http\Models\Service, App\Http\Models\Bitacora, App\Http\Models\Journey, App\Http\Models\DietRequestOut;
+use Validator, Auth, Hash, Config,Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -19,7 +19,26 @@ class UserController extends Controller
 
     public function getUsers(){
 
-        $users = User::all();
+        switch(Auth::user()->role):
+            case 0:
+                $users = User::all();
+            break;
+
+            case 3:
+                $users = User::whereIn('role', ['4', '5'])->where('id', '<>' ,'1')->where('id', '<>' ,'2')->where('id', '<>' ,'3')->where('id', '<>' ,'4')->where('id', '<>' ,'36')->get();
+            break;
+
+            case 4:
+                $users = User::where('role', '5')->where('id', '<>' ,'3')->get();
+            break;
+
+            case 5:
+                $users = User::whereIn('role', ['3', '4', '5'])->where('id', '<>' ,'1')->where('id', '<>' ,'2')->where('id', '<>' ,'3')->where('id', '<>' ,'4')->where('id', '<>' ,'36')->get();
+            break;
+
+        endswitch;
+
+
 
         $data = [
             'users' => $users,
@@ -47,7 +66,8 @@ class UserController extends Controller
         if($validator->fails()):
             return back()->withErrors($validator)->with('error', '¡Se ha producido un error!.')->withInput();
         else:
-            $password = Config::get('agem.default_password');
+            $date = Carbon::now();
+            $password = "Igss.".$date->year;
 
             $user = new User;
             $user->name = e($request->input('name'));
@@ -134,7 +154,7 @@ class UserController extends Controller
         if($rol_actual == '6'):
             $u->idservice = $request->input('idservice');
         endif;
-        
+
         if($rol_actual == '2'):
             $u->idservice = 'NULL';
         endif;
@@ -179,7 +199,10 @@ class UserController extends Controller
 
     public function getUserPermissions($id){
         $u = User::findOrFail($id);
-        $data = ['u' => $u];
+
+        $data = [
+            'u' => $u
+        ];
 
         return view('admin.users.permissions', $data);
     }
@@ -196,6 +219,54 @@ class UserController extends Controller
 
             return back()->with('messages','¡Los permisos del usuario fueron actualizados con éxito!.')
                 ->with('typealert', 'success');
+        endif;
+    }
+
+    public function getUserRequestsOut($id){
+        $u = User::findOrFail($id);
+        $journeys = Journey::pluck('name','id');
+        $solicitudes = DietRequestOut::where('idapplicant', $id)->get();
+
+        $data = [
+            'u' => $u,
+            'journeys' => $journeys,
+            'solicitudes' => $solicitudes
+        ];
+
+        return view('admin.users.requests_out', $data);
+    }
+
+    public function postUserRequestsOut(Request $request, $id){
+        $rules = [
+            'amount_diets' => 'required'
+        ];
+
+        $messages = [
+            'amount_diets.required' => 'La cantidad de dietas es requerida.'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()):
+            return back()->withErrors($validator)->with('error', '¡Se ha producido un error!.')->withInput();
+        else:
+            $usuario = User::findOrFail($id);
+            $dro = new DietRequestOut();
+            $dro->idjourney = $request->input('journey');
+            $dro->idapplicant = $id;
+            $dro->amount_diets = $request->input('amount_diets');
+            $dro->time_available = $request->input('time');
+            $dro->status = 1;
+
+            if($dro->save()):
+                $b = new Bitacora;
+                $b->action = "Habilitación de solicitud fuera de tiempo para usuario con ibm: ".$usuario->ibm;
+                $b->user_id = Auth::id();
+                $b->save();
+
+                return back()->with('messages', '¡Habilitación de solicitud fuera de tiempo, creada y guardada con exito!')
+                    ->with('typealert', 'success');
+            endif;
         endif;
     }
 

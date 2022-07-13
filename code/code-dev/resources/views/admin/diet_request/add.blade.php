@@ -24,7 +24,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <label for="idsupplier"><strong> Jornada: </strong></label>
+                        <label for="idsupplier"><strong><sup style="color: red;">(*)</sup> Jornada: </strong></label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
                             <select name="idjourney" id="idsupplier" style="width: 96%" >
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="col-md-6 mtop16">
-                        <label for="name"><strong> Solicitante: </strong></label>
+                        <label for="name"><strong><sup style="color: red;">(*)</sup> Solicitante: </strong></label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
                             {!! Form::text('name', $user, ['class'=>'form-control', 'readonly']) !!}
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="col-md-6 mtop16">
-                        <label for="type_doc"><strong> Servicio: </strong></label>
+                        <label for="type_doc"><strong><sup style="color: red;">(*)</sup> Servicio: </strong></label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
                             <select name="idservice" id="idservice" style="width: 92%" >
@@ -57,32 +57,56 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
 
                     <div class="row">
-                        <div class="col-md-6 mtop16">
+                        <div class="col-md-3 mtop16">
                             <label><strong> Dieta: </strong></label>
-                            <div class="input-group">                                
+                            <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
                                 {!! Form::select('pidarticulo', $diets, null,['class'=>'form-select', 'id' => 'pidarticulo']) !!}
-                                
+
                             </div>
                         </div>
 
-                        <div class="col-md-5 mtop16" id="div-cantidad">
-                            <label for="cantidad"><strong> Número de Cama: </strong></label>
-                            <div class="input-group">                                
+                        <div class="col-md-2 mtop16">
+                            <label for="cantidad"><strong><sup style="color: red;">(*)</sup> Número de Cama: </strong></label>
+                            <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
-                                {!! Form::number('pcantidad', null, ['class'=>'form-control', 'id' => 'pcantidad']) !!}
+                                {!! Form::number('pcantidad', null, ['class'=>'form-control', 'id' => 'pcantidad', 'min'=>'1']) !!}
                             </div>
                         </div>
 
-                        <div class="col-md-5 mtop16" id="div-especificar">
-                            <label for="cantidad"><strong> Especificar: </strong></label>
-                            <div class="input-group">                                
+                        <div class="col-md-2 mtop16">
+                            <label><strong> Tipo Dieta: </strong></label>
+                            <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
-                                {!! Form::text('pespecificar', null, ['class'=>'form-control', 'id' => 'pespecificar']) !!}
+                                {!! Form::select('pidarticulo1', getTypeDiet('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo1']) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mtop16" id="div-tipo-dietas-1">
+                            <label for="cantidad"><strong> Tipo Dieta: </strong></label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
+                                {!! Form::select('pidarticulo2', getTypeDiet1('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo2']) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mtop16" id="div-tipo-dietas-hiposodicas">
+                            <label for="cantidad"><strong> Tipo Dieta Hiposodica: </strong></label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
+                                {!! Form::select('pidarticulo3', getTypeDietHiposodicas('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo3']) !!}
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 mtop16" id="div-tipo-dietas-renal">
+                            <label for="cantidad"><strong> Tipo Dieta Renal: </strong></label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
+                                {!! Form::select('pidarticulo4', getTypeDietRenal('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo4']) !!}
                             </div>
                         </div>
 
@@ -96,11 +120,17 @@
 
                     <div class="card-body table-responsive">
                         <table id="detalles" class= "table table-striped table-bordered table-condensed table-hover">
-                            <thead style="background-color: #c3f3ea">
-                                <th><strong> ELIMINAR </strong></th>
-                                <th><strong> DIETA </strong></th>
-                                <th><strong> CAMA </strong></th>
-                                <th><strong> ESPECIFICAR </strong></th>
+                            <thead style="background-color: #c3f3ea; text-align:center;">
+                                <th rowspan="2"><strong> ELIMINAR </strong></th>
+                                <th rowspan="2"><strong> DIETA </strong></th>
+                                <th rowspan="2"><strong> CAMA </strong></th>
+                                <th colspan="4"><strong> CARACTERISTICAS </strong></th>
+                                <tr>
+                                    <th>NO.1</th>
+                                    <th>NO.2</th>
+                                    <th>NO.3</th>
+                                    <th>NO.4</th>
+                                </tr>
                             </thead>
 
                             <tbody>
@@ -131,23 +161,47 @@
             agregar();
             });
 
-            var typediet = document.getElementById('pidarticulo');         
-            console.log(typediet.value);
-            var bed = document.getElementById('div-cantidad');
-            var especificar = document.getElementById('div-especificar');
-            bed.hidden = false;
-            especificar.hidden = true;
+            var typediet = document.getElementById('pidarticulo');
 
-            $('#pidarticulo').click(function(){
-                if(typediet.value  == 17){
+
+            var tipo_dietas_1 = document.getElementById('div-tipo-dietas-1');
+            tipo_dietas_1.hidden = false;
+            var tipo_dietas_hiposodicas = document.getElementById('div-tipo-dietas-hiposodicas');
+            tipo_dietas_hiposodicas.hidden = true;
+
+            var tipo_dietas_renal = document.getElementById('div-tipo-dietas-renal');
+            tipo_dietas_renal.hidden = true;
+
+            $('#pidarticulo').change(function(){
+                /*if(typediet.value  == 17){
                     bed.hidden = true;
                     especificar.hidden = false;
                 }else{
                     bed.hidden = false;
-                    especificar.hidden = true;                    
+                    especificar.hidden = true;
+                }*/
+
+                console.log(typediet.value);
+                if(typediet.value  == 1 || typediet.value  == 2 || typediet.value  == 4 || typediet.value  == 5){
+                    tipo_dietas_1.hidden = false;
+                }else{
+                    tipo_dietas_1.hidden = true;
                 }
 
-                
+                if(typediet.value == 7){
+                    tipo_dietas_hiposodicas.hidden = false;
+                }else{
+                    tipo_dietas_hiposodicas.hidden = true;
+                }
+
+                if(typediet.value == 20){
+                    tipo_dietas_renal.hidden = false;
+                }else{
+                    tipo_dietas_renal.hidden = true;
+                }
+
+
+
             });
         });
 
@@ -158,14 +212,22 @@
         $("#guardar").hide();
 
         function agregar(){
-            
+
             idarticulo=$("#pidarticulo").val();
             articulo=$("#pidarticulo option:selected").text();
             cantidad=$("#pcantidad").val();
-            especificar= $("#pespecificar").val();
 
-            if (idarticulo!=""){
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="hidden" name="especificar[]" value="'+especificar+'">'+especificar+'</td></tr>';
+            idcaracteristica1=$("#pidarticulo1").val();
+            caracteristica1=$("#pidarticulo1 option:selected").text();
+            idcaracteristica2=$("#pidarticulo2").val();
+            caracteristica2=$("#pidarticulo2 option:selected").text();
+            idcaracteristica3=$("#pidarticulo3").val();
+            caracteristica3=$("#pidarticulo3 option:selected").text();
+            idcaracteristica4=$("#pidarticulo4").val();
+            caracteristica4=$("#pidarticulo4 option:selected").text();
+
+            if (idarticulo!="" && cantidad > 0){
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td> <td><input type="hidden" name="idcaracteristica1[]" value="'+idcaracteristica1+'">'+caracteristica1+'</td> <td><input type="hidden" name="idcaracteristica2[]" value="'+idcaracteristica2+'">'+caracteristica2+'</td> <td><input type="hidden" name="idcaracteristica3[]" value="'+idcaracteristica3+'">'+caracteristica3+'</td> <td><input type="hidden" name="idcaracteristica4[]" value="'+idcaracteristica4+'">'+caracteristica4+'</td></tr>';
                 cont++;
                 limpiar();
                 evaluar();
@@ -177,7 +239,10 @@
 
         function limpiar(){
             $("#pcantidad").val("");
-            $("#pespecificar").val("");
+            $("#pidarticulo1").val("");
+            $("#pidarticulo2").val("");
+            $("#pidarticulo3").val("");
+            $("#pidarticulo4").val("");
         }
 
         function evaluar()

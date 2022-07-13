@@ -6,7 +6,7 @@
 
         <div class="user">
             <span class="subtitle">Bienvenido: {{ Auth::user()->name }} {{ Auth::user()->lastname }}</span> <br>
-            <span class="subtitle">IBM: {{ Auth::user()->ibm }} </span> 
+            <span class="subtitle">IBM: {{ Auth::user()->ibm }} </span>
             <div class="salir">
                 Salir
                 <a href="{{url('/logout')}}" data-toogle="tooltrip" data-placement="top" title="Salir">
@@ -37,9 +37,15 @@
                 </li>
             @endif
 
-            @if(kvfj(Auth::user()->permissions, 'diet_requests'))
+            @if(kvfj(Auth::user()->permissions, 'diet_requests') && Auth::user()->role == 5)
                 <li>
                     <a href="{{ url('/admin/solicitud_dietas/0') }}" class="lk-diet_requests lk-diet_request_add lk-diet_request_view lk-diet_request_delete"><i class="fa-solid fa-receipt"></i> Solicitud de Dietas</a>
+                </li>
+            @endif
+
+            @if(kvfj(Auth::user()->permissions, 'diet_requests') && Auth::user()->role != 5)
+                <li>
+                    <a href="{{ url('/admin/solicitud_dietas/1') }}" class="lk-diet_requests lk-diet_request_add lk-diet_request_view lk-diet_request_delete"><i class="fa-solid fa-receipt"></i> Solicitud de Dietas</a>
                 </li>
             @endif
 
@@ -75,7 +81,7 @@
 
             @if(kvfj(Auth::user()->permissions, 'user_list'))
                 <li>
-                    <a href="{{ url('/admin/usuarios') }}" class="lk-user_add lk-user_list lk-user_edit lk-user_permissions lk-user_assignments"><i class="fas fa-user-lock"></i> Usuarios</a>
+                    <a href="{{ url('/admin/usuarios') }}" class="lk-user_add lk-user_list lk-user_edit lk-user_permissions lk-user_requests_out lk-user_assignments"><i class="fas fa-user-lock"></i> Usuarios</a>
                 </li>
             @endif
 

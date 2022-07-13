@@ -17,12 +17,22 @@
                     <li>
                         <a href="#"><i class="fas fa-chevron-down"></i> Filtar</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{url('/admin/solicitud_dietas/0')}}"><i class="fas fa-stopwatch"></i> Activas</a></li>
-                            <li><a href="{{url('/admin/solicitud_dietas/1')}}"><i class="fas fa-check-circle"></i> Servidas</a></li>
-                            <li><a href="{{url('/admin/solicitud_dietas/trash')}}"><i class="fas fa-trash-alt"></i> Eliminadas</a></li>
-                            <li><a href="{{url('/admin/solicitud_dietas/all')}}"><i class="fas fa-boxes"></i> Todas</a></li>
+                            @if(Auth::user()->role == 5 || Auth::user()->role == 0 || Auth::user()->role == 1)
+                                <li><a href="{{url('/admin/solicitud_dietas/0')}}"><i class="fas fa-stopwatch"></i> Pre-Solicitudes</a></li>
+                            @endif
+                            <li><a href="{{url('/admin/solicitud_dietas/1')}}"><i class="fas fa-check-circle"></i> Registradas</a></li>
+                            <li><a href="{{url('/admin/solicitud_dietas/2')}}"><i class="fas fa-check-circle"></i> Servidas</a></li>
+                            <li><a href="{{url('/admin/solicitud_dietas/anuladas')}}"><i class="fas fa-trash-alt"></i> Anuladas</a></li>
+                            <li><a href="{{url('/admin/solicitud_dietas/todas')}}"><i class="fas fa-boxes"></i> Todas</a></li>
                         </ul>
                     </li>
+                    @if(kvfj(Auth::user()->permissions, 'diet_request_print_journey'))
+                        <li>
+                            <a href="#" data-action="impresion_lote" data-path="admin/solicitud_dieta" class="btn-deleted" data-toogle="tooltrip" data-placement="top"><i class="fa-solid fa-file-invoice"></i> Impresión por Lote</a>
+                        </li>
+                    @endif
+
+
                     @if(kvfj(Auth::user()->permissions, 'diet_request_add'))
                         <li>
                             <a href="{{ url('/admin/solicitud_dieta/solicitar') }}" ><i class="fas fa-plus-circle"></i> Nueva Solicitud</a>
@@ -36,6 +46,7 @@
                     <thead>
                         <tr>
                             <td><strong> OPCIONES </strong></td>
+                            <td><strong> SOLICITADA </strong></td>
                             <td><strong> JORNADA </strong></td>
                             <td><strong> SERVICIO </strong></td>
                             <td><strong> ESTADO </strong></td>
@@ -46,22 +57,25 @@
                             <tr>
                                 <td>
                                     <div class="opts">
-                                        @if(kvfj(Auth::user()->permissions, 'user_edit'))
+                                        @if(kvfj(Auth::user()->permissions, 'diet_request_view') && $dr->status != '3')
                                             <a href="{{ url('/admin/solicitud_dieta/'.$dr->id.'/detalles') }}" data-toogle="tooltrip" data-placement="top" title="Ver Detalles"><i class="fas fa-eye"></i></a>
                                         @endif
-                                        @if(kvfj(Auth::user()->permissions, 'user_edit'))
+                                        @if(kvfj(Auth::user()->permissions, 'diet_request_print') && $dr->status != '2' && $dr->status != '3')
                                             <a href="{{ url('/admin/solicitud_dieta/'.$dr->id.'/imprimir') }}" target="_blank" data-toogle="tooltrip" data-placement="top" title="Generar PDF"><i class="fas fa-file-pdf"></i></a>
                                         @endif
-                                        @if(kvfj(Auth::user()->permissions, 'user_edit'))
-                                            <a href="{{ url('/admin/solicitud_dieta/'.$dr->id.'/servida') }}" target="_blank" data-toogle="tooltrip" data-placement="top" title="Marcar como Servida"><i class="fas fa-clipboard-check"></i></a>
+                                        @if(kvfj(Auth::user()->permissions, 'diet_request_served') && $dr->status != '2' && $dr->status != '3')
+                                            <a href="#" data-action="servida" data-path="admin/solicitud_dieta" data-object="{{ $dr->id }}" class="btn-deleted" data-toogle="tooltrip" data-placement="top" title="Dietas Servidas" ><i class="fas fa-clipboard-check"></i></a>
                                         @endif
-                                        @if(kvfj(Auth::user()->permissions, 'user_permissions'))
-                                            <a href="{{ url('/admin/solicitud_dieta/'.$dr->id.'/anular') }}" data-toogle="tooltrip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
+                                        @if(kvfj(Auth::user()->permissions, 'diet_request_delete') && $dr->status != '2' && $dr->status != '3')
+                                            <a href="#" data-action="anular" data-path="admin/solicitud_dieta" data-object="{{ $dr->id }}" class="btn-deleted" data-toogle="tooltrip" data-placement="top" title="Anular Solicitud" ><i class="fas fa-trash-alt"></i></a>
                                         @endif
                                     </div>
                                 </td>
+                                <td>{{ $dr->created_at->format('d-m-Y H:i') }}</td>
                                 <td>{{ $dr->journey->name }}</td>
-                                <td>{{ $dr->service->name }}</td>
+                                <td>{{ $dr->service->name }}<br>
+                                    {{ $dr->user->ibm.' - '.$dr->user->name.' '.$dr->user->lastname }}
+                                </td>
                                 <td>{{ getDietStatusArray(null, $dr->status) }}</td>
                             </tr>
                         @endforeach
