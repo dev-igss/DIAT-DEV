@@ -105,13 +105,14 @@
                                 <tr>
                                     <th rowspan="2"><strong> DIETA </strong></th>
                                     <th rowspan="2"><strong> CAMA </strong></th>
-                                    <th colspan="4"><strong> CARACTERISTICAS</strong></th>
+                                    <th colspan="5"><strong> CARACTERISTICAS</strong></th>
                                 </tr>
                                 <tr>
                                     <th>No. 1</th>
                                     <th>No. 2</th>
                                     <th>No. 3</th>
                                     <th>No. 4</th>
+                                    <th>No. 5</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -124,6 +125,7 @@
                                         <th>{{ getTypeDiet1(null, $detail->type_diet_1) }}</th>
                                         <th>{{ getTypeDietHiposodicas(null, $detail->type_diet_hiposodicas) }}</th>
                                         <th>{{ getTypeDietRenal(null, $detail->type_diet_renal) }}</th>
+                                        <th>{{ getTypeDietDeViaje(null, $detail->type_diet_de_viaje) }}</th>
                                     </tr>
 
                                 @endforeach
