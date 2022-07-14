@@ -129,7 +129,7 @@
                                 @endforeach
                                 <tr>
                                     <td colspan="5"></td>
-                                    <td><strong>TOTAL DIETAS: </strong>{{ count($details) }}</td>
+                                    <td><strong>TOTAL DIETAS: </strong>{{ $diet_request->total_diets }}</td>
                                 </tr>
                             </tbody>
                         </table>

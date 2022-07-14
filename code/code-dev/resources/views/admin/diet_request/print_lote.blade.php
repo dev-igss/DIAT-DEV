@@ -74,8 +74,108 @@
                         <TD colspan="2"  style="width: 100px;">
                             @foreach($details as $d)
                                 @if($d->iddiet == "1" && $d->iddiet_request == $dr->id)
+                                    @if(!$loop->last )
 
-                                    @if($loop->last || $loop->count = 1)
+                                        @if($d->type_pack == 1)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (I-D), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (I-H), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (I-DH), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (I), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 2)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (E-D), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (E-H), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (E-DH), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (E), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 3)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (D), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 4)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (I-D), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (I-H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (I-DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 5)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (E-D),'   }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (E-H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (E-DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 0 && $d->type_diet_1 == 0)
+                                            {{ $d->bed_number.', '  }}
+                                        @endif
+
+                                    @else
 
 
                                         @if($d->type_pack == 1)
@@ -177,106 +277,9 @@
                                             {{ $d->bed_number  }}
                                         @endif
 
-                                    @else
-                                        @if($d->type_pack == 1)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (I-D), '  }}
-                                                @break
 
-                                                @case(2)
-                                                    {{ $d->bed_number.' (I-H), '  }}
-                                                @break
 
-                                                @case(3)
-                                                    {{ $d->bed_number.' (I-DH), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (I), '  }}
-                                            @endswitch
                                         @endif
-
-                                        @if($d->type_pack == 2)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (E-D), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (E-H), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (E-DH), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (E), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 3)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (D), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 4)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (I-D), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (I-H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (I-DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 5)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (E-D),'   }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (E-H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (E-DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 0 && $d->type_diet_1 == 0)
-                                            {{ $d->bed_number.', '  }}
-                                        @endif
-
                                     @endif
                                 @endif
                             @endforeach
@@ -299,7 +302,109 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "2" && $d->iddiet_request == $dr->id)
-                                    @if(!$loop->last || $loop->count = 1)
+                                    @if(!$loop->last)
+
+
+                                        @if($d->type_pack == 1)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (I-D), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (I-H), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (I-DH), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (I), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 2)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (E-D), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (E-H), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (E-DH), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (E), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 3)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (D), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.', '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 4)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (I-D), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (I-H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (I-DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 5)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (E-D),'   }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (E-H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (E-DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 0 && $d->type_diet_1 == 0)
+                                            {{ $d->bed_number.', '  }}
+                                        @endif
+
+                                    @else
 
                                         @if($d->type_pack == 1)
                                             @switch($d->type_diet_1)
@@ -399,107 +504,6 @@
                                         @if($d->type_pack == 0 && $d->type_diet_1 == 0)
                                             {{ $d->bed_number  }}
                                         @endif
-
-                                    @else
-                                        @if($d->type_pack == 1)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (I-D), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (I-H), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (I-DH), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (I), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 2)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (E-D), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (E-H), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (E-DH), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (E), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 3)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (D), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 4)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (I-D), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (I-H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (I-DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 5)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (E-D),'   }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (E-H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (E-DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 0 && $d->type_diet_1 == 0)
-                                            {{ $d->bed_number.', '  }}
-                                        @endif
-
                                     @endif
                                 @endif
                             @endforeach
@@ -522,32 +526,7 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "3" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
-
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
+                                    @if(!$loop->last)
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -572,6 +551,32 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                    
                                     @endif
                                 @endif
                             @endforeach
@@ -599,7 +604,108 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "4" && $d->iddiet_request == $dr->id)
-                                    @if(!$loop->last || $loop->count = 1)
+                                    @if(!$loop->last)
+
+                                        @if($d->type_pack == 1)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (I-D), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (I-H), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (I-DH), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (I), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 2)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (E-D), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (E-H), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (E-DH), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (E), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 3)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (D), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 4)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (I-D), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (I-H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (I-DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 5)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (E-D),'   }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (E-H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (E-DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 0 && $d->type_diet_1 == 0)
+                                            {{ $d->bed_number.', '  }}
+                                        @endif
+
+                                    @else
 
                                         @if($d->type_pack == 1)
                                             @switch($d->type_diet_1)
@@ -700,105 +806,7 @@
                                             {{ $d->bed_number  }}
                                         @endif
 
-                                    @else
-                                        @if($d->type_pack == 1)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (I-D), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (I-H), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (I-DH), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (I), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 2)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (E-D), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (E-H), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (E-DH), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (E), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 3)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (D), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 4)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (I-D), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (I-H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (I-DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 5)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (E-D),'   }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (E-H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (E-DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 0 && $d->type_diet_1 == 0)
-                                            {{ $d->bed_number.', '  }}
-                                        @endif
+                                    
 
                                     @endif
                                 @endif
@@ -823,7 +831,107 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "5" && $d->iddiet_request == $dr->id)
-                                    @if(!$loop->last || $loop->count = 1)
+                                    @if(!$loop->last)
+                                        @if($d->type_pack == 1)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (I-D), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (I-H), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (I-DH), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (I), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 2)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (E-D), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (E-H), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (E-DH), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (E), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 3)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (D), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 4)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (I-D), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (I-H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (I-DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 5)
+                                            @switch($d->type_diet_1)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (E-D),'   }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (E-H), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (E-DH), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 0 && $d->type_diet_1 == 0)
+                                            {{ $d->bed_number.', '  }}
+                                        @endif
+
+                                    @else
 
                                         @if($d->type_pack == 1)
                                             @switch($d->type_diet_1)
@@ -924,105 +1032,7 @@
                                             {{ $d->bed_number  }}
                                         @endif
 
-                                    @else
-                                        @if($d->type_pack == 1)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (I-D), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (I-H), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (I-DH), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (I), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 2)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (E-D), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (E-H), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (E-DH), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (E), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 3)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (D), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 4)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (I-D), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (I-H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (I-DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 5)
-                                            @switch($d->type_diet_1)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (E-D),'   }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (E-H), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (E-DH), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 0 && $d->type_diet_1 == 0)
-                                            {{ $d->bed_number.', '  }}
-                                        @endif
+                                    
 
                                     @endif
                                 @endif
@@ -1047,32 +1057,7 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "6" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
-
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
+                                    @if(!$loop->last)
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1097,6 +1082,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                    
                                     @endif
                                 @endif
                             @endforeach
@@ -1120,7 +1132,129 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "7" && $d->iddiet_request == $dr->id)
-                                    @if(!$loop->last || $loop->count = 1)
+                                    @if(!$loop->last )
+
+                                        @if($d->type_pack == 1)
+                                            @switch($d->type_diet_hiposodicas)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (I-BF), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (I-AF), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (I-BK), '  }}
+                                                @break
+
+                                                @case(4)
+                                                    {{ $d->bed_number.' (I-AK), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (I), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 2)
+                                            @switch($d->type_diet_hiposodicas)
+                                                @case(1)
+                                                    {{ $d->bed_number.' (E-BF), '  }}
+                                                @break
+
+                                                @case(2)
+                                                    {{ $d->bed_number.' (E-AF), '  }}
+                                                @break
+
+                                                @case(3)
+                                                    {{ $d->bed_number.' (E-BK), '  }}
+                                                @break
+
+                                                @case(4)
+                                                    {{ $d->bed_number.' (E-AK), '  }}
+                                                @break
+
+                                                @default
+                                                    {{ $d->bed_number.' (E), '  }}
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 3)
+                                            @switch($d->type_diet_hiposodicas)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (BF), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (AF), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (BK), '  }}</strong>
+                                                @break
+
+                                                @case(4)
+                                                    <strong>{{ $d->bed_number.' (AK), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 4)
+                                            @switch($d->type_diet_hiposodicas)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (I-BF), '  }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (I-AF), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (I-BK), '  }}</strong>
+                                                @break
+
+                                                @case(4)
+                                                    <strong>{{ $d->bed_number.' (I-AK), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 5)
+                                            @switch($d->type_diet_hiposodicas)
+                                                @case(1)
+                                                    <strong>{{ $d->bed_number.' (E-BF),'   }}</strong>
+                                                @break
+
+                                                @case(2)
+                                                    <strong>{{ $d->bed_number.' (E-AF), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (E-BK), '  }}</strong>
+                                                @break
+
+                                                @case(3)
+                                                    <strong>{{ $d->bed_number.' (E-AK), '  }}</strong>
+                                                @break
+
+                                                @default
+                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
+                                            @endswitch
+                                        @endif
+
+                                        @if($d->type_pack == 0 && $d->type_diet_hiposodicas == 0)
+                                            {{ $d->bed_number.', '  }}
+                                        @endif
+
+
+                                    @else
 
                                         @if($d->type_pack == 1)
                                             @switch($d->type_diet_hiposodicas)
@@ -1241,125 +1375,7 @@
                                             {{ $d->bed_number  }}
                                         @endif
 
-                                    @else
-                                        @if($d->type_pack == 1)
-                                            @switch($d->type_diet_hiposodicas)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (I-BF), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (I-AF), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (I-BK), '  }}
-                                                @break
-
-                                                @case(4)
-                                                    {{ $d->bed_number.' (I-AK), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (I), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 2)
-                                            @switch($d->type_diet_hiposodicas)
-                                                @case(1)
-                                                    {{ $d->bed_number.' (E-BF), '  }}
-                                                @break
-
-                                                @case(2)
-                                                    {{ $d->bed_number.' (E-AF), '  }}
-                                                @break
-
-                                                @case(3)
-                                                    {{ $d->bed_number.' (E-BK), '  }}
-                                                @break
-
-                                                @case(4)
-                                                    {{ $d->bed_number.' (E-AK), '  }}
-                                                @break
-
-                                                @default
-                                                    {{ $d->bed_number.' (E), '  }}
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 3)
-                                            @switch($d->type_diet_hiposodicas)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (BF), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (AF), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (BK), '  }}</strong>
-                                                @break
-
-                                                @case(4)
-                                                    <strong>{{ $d->bed_number.' (AK), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 4)
-                                            @switch($d->type_diet_hiposodicas)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (I-BF), '  }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (I-AF), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (I-BK), '  }}</strong>
-                                                @break
-
-                                                @case(4)
-                                                    <strong>{{ $d->bed_number.' (I-AK), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (I), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 5)
-                                            @switch($d->type_diet_hiposodicas)
-                                                @case(1)
-                                                    <strong>{{ $d->bed_number.' (E-BF),'   }}</strong>
-                                                @break
-
-                                                @case(2)
-                                                    <strong>{{ $d->bed_number.' (E-AF), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (E-BK), '  }}</strong>
-                                                @break
-
-                                                @case(3)
-                                                    <strong>{{ $d->bed_number.' (E-AK), '  }}</strong>
-                                                @break
-
-                                                @default
-                                                    <strong>{{ $d->bed_number.' (E), '}}</strong>
-                                            @endswitch
-                                        @endif
-
-                                        @if($d->type_pack == 0 && $d->type_diet_hiposodicas == 0)
-                                            {{ $d->bed_number.', '  }}
-                                        @endif
+                                    
 
                                     @endif
                                 @endif
@@ -1386,32 +1402,7 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "8" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
-
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
+                                    @if(!$loop->last)
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1436,6 +1427,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+
                                     @endif
                                 @endif
                             @endforeach
@@ -1468,32 +1486,7 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "9" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
-
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
+                                    @if(!$loop->last)
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1518,6 +1511,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                    
                                     @endif
                                 @endif
                             @endforeach
@@ -1529,32 +1549,7 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "10" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
-
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
+                                    @if(!$loop->last)
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1579,6 +1574,34 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+
+                                        
                                     @endif
                                 @endif
                             @endforeach
@@ -1590,32 +1613,8 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "11" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
+                                    @if(!$loop->last )
 
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1640,6 +1639,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                    
                                     @endif
                                 @endif
                             @endforeach
@@ -1651,32 +1677,8 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "12" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
+                                    @if(!$loop->last)
 
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1701,6 +1703,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                    
                                     @endif
                                 @endif
                             @endforeach
@@ -1738,32 +1767,8 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "13" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
+                                    @if(!$loop->last)
 
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1788,6 +1793,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                    
                                     @endif
                                 @endif
                             @endforeach
@@ -1814,32 +1846,8 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "14" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
+                                    @if(!$loop->last)
 
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1864,6 +1872,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                   
                                     @endif
                                 @endif
                             @endforeach
@@ -1890,32 +1925,8 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "15" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
+                                    @if(!$loop->last)
 
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -1940,6 +1951,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                    
                                     @endif
                                 @endif
                             @endforeach
@@ -1966,32 +2004,8 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "16" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        @switch($d->type_pack)
-                                            @case(1)
-                                                {{ $d->bed_number.' (I)'  }}
-                                            @break
+                                    @if(!$loop->last)
 
-                                            @case(2)
-                                                {{ $d->bed_number.' (E)'  }}
-                                            @break
-
-                                            @case(3)
-                                                <strong> {{ $d->bed_number}} </strong>
-                                            @break
-
-                                            @case(4)
-                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
-                                            @break
-
-                                            @case(5)
-                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
-                                            @break
-
-                                            @default
-                                                {{ $d->bed_number}}
-                                        @endswitch
-                                    @else
                                         @switch($d->type_pack)
                                             @case(1)
                                                 {{ $d->bed_number.' (I), '  }}
@@ -2016,6 +2030,33 @@
                                             @default
                                                 {{ $d->bed_number.', '}}
                                         @endswitch
+
+                                    @else
+                                        @switch($d->type_pack)
+                                            @case(1)
+                                                {{ $d->bed_number.' (I)'  }}
+                                            @break
+
+                                            @case(2)
+                                                {{ $d->bed_number.' (E)'  }}
+                                            @break
+
+                                            @case(3)
+                                                <strong> {{ $d->bed_number}} </strong>
+                                            @break
+
+                                            @case(4)
+                                                <strong> {{ $d->bed_number.' (I)'  }} </strong>
+                                            @break
+
+                                            @case(5)
+                                                <strong> {{ $d->bed_number.' (E)'  }} </strong>
+                                            @break
+
+                                            @default
+                                                {{ $d->bed_number}}
+                                        @endswitch
+                                    
                                     @endif
                                 @endif
                             @endforeach
@@ -2042,8 +2083,455 @@
                         <TH ROWSPAN="3" colspan="2" ALIGN="center" >OTRAS (Especificar)</TH>
                         <TD colspan="2" height="15">
                             @foreach($details as $d)
-                                @if($d->iddiet >= 19 && $d->iddiet <= 27 && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
+                                @if($d->iddiet >= 19 && $d->iddiet <= 28 && $d->iddiet_request == $dr->id)
+                                    @if($loop->last )
+
+                                        @switch($d->iddiet)
+                                            @case(19)
+                                                @switch($d->type_pack)
+                                                    @case(1)
+                                                        {{ $d->bed_number.' (I-DH, )'  }}
+                                                    @break
+
+                                                    @case(2)
+                                                        {{ $d->bed_number.' (E-DH, )'  }}
+                                                    @break
+
+                                                    @case(3)
+                                                        <strong> {{ $d->bed_number.' (DH, )'  }} </strong>
+                                                    @break
+
+                                                    @case(4)
+                                                        <strong> {{ $d->bed_number.' (I-DH, )'  }} </strong>
+                                                    @break
+
+                                                    @case(5)
+                                                        <strong> {{ $d->bed_number.' (E-DH, )'  }} </strong>
+                                                    @break
+
+                                                    @default
+                                                        {{ $d->bed_number." (DH, )" }}
+                                                @endswitch
+                                            @break
+
+                                            @case(20)
+                                                @if($d->type_pack == 1)
+                                                    @switch($d->type_diet_renal)
+                                                        @case(1)
+                                                            {{ $d->bed_number.' (I-RD), '  }}
+                                                        @break
+
+                                                        @default
+                                                            {{ $d->bed_number.' (I-R), '  }}
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 2)
+                                                    @switch($d->type_diet_renal)
+                                                        @case(1)
+                                                            {{ $d->bed_number.' (E-RD), '  }}
+                                                        @break
+
+                                                        @default
+                                                            {{ $d->bed_number.' (E-R), '  }}
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 3)
+                                                    @switch($d->type_diet_renal)
+                                                        @case(1)
+                                                            <strong>{{ $d->bed_number.' (RD), '  }}</strong>
+                                                        @break
+
+                                                        @default
+                                                            <strong>{{ $d->bed_number.' (R), '}}</strong>
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 4)
+                                                    @switch($d->type_diet_renal)
+                                                        @case(1)
+                                                            <strong>{{ $d->bed_number.' (I-RD), '  }}</strong>
+                                                        @break
+
+                                                        @default
+                                                            <strong>{{ $d->bed_number.' (I-R), '}}</strong>
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 5)
+                                                    @switch($d->type_diet_renal)
+                                                        @case(1)
+                                                            <strong>{{ $d->bed_number.' (E-RD), '  }}</strong>
+                                                        @break
+
+                                                        @default
+                                                            <strong>{{ $d->bed_number.' (E-R), '}}</strong>
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 0 && $d->type_diet_renal == 0)
+                                                    {{ $d->bed_number." (R), " }}
+                                                @endif
+                                            @break
+
+                                            @case(21)
+                                                @switch($d->type_pack)
+                                                    @case(1)
+                                                        {{ $d->bed_number.' (I-BP, )'  }}
+                                                    @break
+
+                                                    @case(2)
+                                                        {{ $d->bed_number.' (E-BP, )'  }}
+                                                    @break
+
+                                                    @case(3)
+                                                        <strong> {{ $d->bed_number.' (BP, )'  }} </strong>
+                                                    @break
+
+                                                    @case(4)
+                                                        <strong> {{ $d->bed_number.' (I-BP, )'  }} </strong>
+                                                    @break
+
+                                                    @case(5)
+                                                        <strong> {{ $d->bed_number.' (E-BP, )'  }} </strong>
+                                                    @break
+
+                                                    @default
+                                                        {{ $d->bed_number." (BP, )" }}
+                                                @endswitch
+                                            @break
+
+                                            @case(22)
+                                                @switch($d->type_pack)
+                                                    @case(1)
+                                                        {{ $d->bed_number.' (I-BF, )'  }}
+                                                    @break
+
+                                                    @case(2)
+                                                        {{ $d->bed_number.' (E-BF, )'  }}
+                                                    @break
+
+                                                    @case(3)
+                                                        <strong> {{ $d->bed_number.' (BF, )'  }} </strong>
+                                                    @break
+
+                                                    @case(4)
+                                                        <strong> {{ $d->bed_number.' (I-BF, )'  }} </strong>
+                                                    @break
+
+                                                    @case(5)
+                                                        <strong> {{ $d->bed_number.' (E-BF, )'  }} </strong>
+                                                    @break
+
+                                                    @default
+                                                        {{ $d->bed_number." (BF, )" }}
+                                                @endswitch
+                                            @break
+
+                                            @case(23)
+                                                @switch($d->type_pack)
+                                                    @case(1)
+                                                        {{ $d->bed_number.' (I-BK, )'  }}
+                                                    @break
+
+                                                    @case(2)
+                                                        {{ $d->bed_number.' (E-BK, )'  }}
+                                                    @break
+
+                                                    @case(3)
+                                                        <strong> {{ $d->bed_number.' (BK, )'  }} </strong>
+                                                    @break
+
+                                                    @case(4)
+                                                        <strong> {{ $d->bed_number.' (I-BK, )'  }} </strong>
+                                                    @break
+
+                                                    @case(5)
+                                                        <strong> {{ $d->bed_number.' (E-BK, )'  }} </strong>
+                                                    @break
+
+                                                    @default
+                                                        {{ $d->bed_number." (BK, )" }}
+                                                @endswitch
+                                            @break
+
+                                            @case(24)
+                                                @switch($d->type_pack)
+                                                    @case(1)
+                                                        {{ $d->bed_number.' (I-C, )'  }}
+                                                    @break
+
+                                                    @case(2)
+                                                        {{ $d->bed_number.' (E-C, )'  }}
+                                                    @break
+
+                                                    @case(3)
+                                                        <strong> {{ $d->bed_number.' (C, )'  }} </strong>
+                                                    @break
+
+                                                    @case(4)
+                                                        <strong> {{ $d->bed_number.' (I-C, )'  }} </strong>
+                                                    @break
+
+                                                    @case(5)
+                                                        <strong> {{ $d->bed_number.' (E-C, )'  }} </strong>
+                                                    @break
+
+                                                    @default
+                                                        {{ $d->bed_number." (C, )" }}
+                                                @endswitch
+                                            @break
+
+                                            @case(25)
+                                                @switch($d->type_pack)
+                                                    @case(1)
+                                                        {{ $d->bed_number.' (I-AU, )'  }}
+                                                    @break
+
+                                                    @case(2)
+                                                        {{ $d->bed_number.' (E-AU, )'  }}
+                                                    @break
+
+                                                    @case(3)
+                                                        <strong> {{ $d->bed_number.' (AU, )'  }} </strong>
+                                                    @break
+
+                                                    @case(4)
+                                                        <strong> {{ $d->bed_number.' (I-AU, )'  }} </strong>
+                                                    @break
+
+                                                    @case(5)
+                                                        <strong> {{ $d->bed_number.' (E-AU, )'  }} </strong>
+                                                    @break
+
+                                                    @default
+                                                        {{ $d->bed_number." (AU, )" }}
+                                                @endswitch
+                                            @break
+
+                                            @case(26)
+                                                @switch($d->type_pack)
+                                                    @case(1)
+                                                        {{ $d->bed_number.' (I-AK, )'  }}
+                                                    @break
+
+                                                    @case(2)
+                                                        {{ $d->bed_number.' (E-AK, )'  }}
+                                                    @break
+
+                                                    @case(3)
+                                                        <strong> {{ $d->bed_number.' (AK, )'  }} </strong>
+                                                    @break
+
+                                                    @case(4)
+                                                        <strong> {{ $d->bed_number.' (I-AK, )'  }} </strong>
+                                                    @break
+
+                                                    @case(5)
+                                                        <strong> {{ $d->bed_number.' (E-AK, )'  }} </strong>
+                                                    @break
+
+                                                    @default
+                                                        {{ $d->bed_number." (AK, )" }}
+                                                @endswitch
+                                            @break
+
+                                            @case(27)
+                                                @switch($d->type_pack)
+                                                    @case(1)
+                                                        {{ $d->bed_number.' (I-SL), '  }}
+                                                    @break
+
+                                                    @case(2)
+                                                        {{ $d->bed_number.' (E-SL), '  }}
+                                                    @break
+
+                                                    @case(3)
+                                                        <strong> {{ $d->bed_number.' (SL), '  }} </strong>
+                                                    @break
+
+                                                    @case(4)
+                                                        <strong> {{ $d->bed_number.' (I-SL), '  }} </strong>
+                                                    @break
+
+                                                    @case(5)
+                                                        <strong> {{ $d->bed_number.' (E-SL), '  }} </strong>
+                                                    @break
+
+                                                    @default
+                                                        {{ $d->bed_number." (SL), " }}
+                                                @endswitch
+                                            @break
+
+                                            @case(28)
+                                                @if($d->type_pack == 1)
+                                                    @switch($d->type_diet_de_viaje)
+                                                        @case(1)
+                                                            {{ $d->bed_number.' (I-DV-L), '  }}
+                                                        @break
+
+                                                        @case(2)
+                                                            {{ $d->bed_number.' (I-DV-B), '  }}
+                                                        @break
+
+                                                        @case(3)
+                                                            {{ $d->bed_number.' (I-DV-D), '  }}
+                                                        @break
+
+                                                        @case(4)
+                                                            {{ $d->bed_number.' (I-DV-H), '  }}
+                                                        @break
+
+                                                        @case(5)
+                                                            {{ $d->bed_number.' (I-DV-DH), '  }}
+                                                        @break
+
+                                                        @case(6)
+                                                            {{ $d->bed_number.' (I-DV-P), '  }}
+                                                        @break
+
+                                                        @default
+                                                            {{ $d->bed_number.' (I-DV), '  }}
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 2)
+                                                    @switch($d->type_diet_de_viaje)
+                                                        @case(1)
+                                                            {{ $d->bed_number.' (E-DV-L), '  }}
+                                                        @break
+
+                                                        @case(2)
+                                                            {{ $d->bed_number.' (E-DV-B), '  }}
+                                                        @break
+
+                                                        @case(3)
+                                                            {{ $d->bed_number.' (E-DV-D), '  }}
+                                                        @break
+
+                                                        @case(4)
+                                                            {{ $d->bed_number.' (E-DV-H), '  }}
+                                                        @break
+
+                                                        @case(5)
+                                                            {{ $d->bed_number.' (E-DV-DH), '  }}
+                                                        @break
+
+                                                        @case(6)
+                                                            {{ $d->bed_number.' (E-DV-P), '  }}
+                                                        @break
+
+                                                        @default
+                                                            {{ $d->bed_number.' (E-DV), '  }}
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 3)
+                                                    @switch($d->type_diet_renal)
+                                                        @case(1)
+                                                            <strong>{{ $d->bed_number.' (DV-L), '  }}</strong>
+                                                        @break
+
+                                                        @case(2)
+                                                            <strong>{{ $d->bed_number.' (DV-B), '  }}</strong>
+                                                        @break
+
+                                                        @case(3)
+                                                            <strong>{{ $d->bed_number.' (DV-D), '  }}</strong>
+                                                        @break
+
+                                                        @case(4)
+                                                            <strong>{{ $d->bed_number.' (DV-H), '  }}</strong>
+                                                        @break
+
+                                                        @case(5)
+                                                            <strong>{{ $d->bed_number.' (DV-DH), '  }}</strong>
+                                                        @break
+
+                                                        @case(6)
+                                                            <strong>{{ $d->bed_number.' (DV-P), '  }}</strong>
+                                                        @break
+
+                                                        @default
+                                                            <strong>{{ $d->bed_number.' (DV), '  }}</strong>
+
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 4)
+                                                    @switch($d->type_diet_renal)
+                                                        @case(1)
+                                                            <strong>{{ $d->bed_number.' (I-DV-L), '  }}</strong>
+                                                        @break
+
+                                                        @case(2)
+                                                            <strong>{{ $d->bed_number.' (I-DV-B), '  }}</strong>
+                                                        @break
+
+                                                        @case(3)
+                                                            <strong>{{ $d->bed_number.' (I-DV-D), '  }}</strong>
+                                                        @break
+
+                                                        @case(4)
+                                                            <strong>{{ $d->bed_number.' (I-DV-H), '  }}</strong>
+                                                        @break
+
+                                                        @case(5)
+                                                            <strong>{{ $d->bed_number.' (I-DV-DH), '  }}</strong>
+                                                        @break
+
+                                                        @case(6)
+                                                            <strong>{{ $d->bed_number.' (I-DV-P), '  }}</strong>
+                                                        @break
+
+                                                        @default
+                                                            <strong>{{ $d->bed_number.' (I-DV), '  }}</strong>
+
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 5)
+                                                    @switch($d->type_diet_renal)
+                                                        @case(1)
+                                                            <strong>{{ $d->bed_number.' (E-DV-L), '  }}</strong>
+                                                        @break
+
+                                                        @case(2)
+                                                            <strong>{{ $d->bed_number.' (E-DV-B), '  }}</strong>
+                                                        @break
+
+                                                        @case(3)
+                                                            <strong>{{ $d->bed_number.' (E-DV-D), '  }}</strong>
+                                                        @break
+
+                                                        @case(4)
+                                                            <strong>{{ $d->bed_number.' (E-DV-H), '  }}</strong>
+                                                        @break
+
+                                                        @case(5)
+                                                            <strong>{{ $d->bed_number.' (E-DV-DH), '  }}</strong>
+                                                        @break
+
+                                                        @case(6)
+                                                            <strong>{{ $d->bed_number.' (E-DV-P), '  }}</strong>
+                                                        @break
+
+                                                        @default
+                                                            <strong>{{ $d->bed_number.' (E-DV), '  }}</strong>
+                                                    @endswitch
+                                                @endif
+
+                                                @if($d->type_pack == 0 && $d->type_diet_renal == 0)
+                                                    {{ $d->bed_number." (DV), " }}
+                                                @endif
+
+                                            @break
+
+                                        @endswitch
+
+
+                                    @else
                                         @switch($d->iddiet)
                                             @case(19)
                                                 @switch($d->type_pack)
@@ -2324,349 +2812,176 @@
                                             @break
 
                                             @case(28)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-DV)'  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-DV)'  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (DV)'  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-DV)'  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-DV)'  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (DV)" }}
-                                                @endswitch
-                                            @break
-
-                                        @endswitch
-
-                                        @if($d->type_pack == 0)
-                                            {{ $d->bed_number.', '  }}
-                                        @endif
-
-                                    @else
-                                        @switch($d->iddiet)
-                                            @case(19)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-DH, )'  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-DH, )'  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (DH, )'  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-DH, )'  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-DH, )'  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (DH, )" }}
-                                                @endswitch
-                                            @break
-
-                                            @case(20)
                                                 @if($d->type_pack == 1)
-                                                    @switch($d->type_diet_renal)
+                                                    @switch($d->type_diet_de_viaje)
                                                         @case(1)
-                                                            {{ $d->bed_number.' (I-RD), '  }}
+                                                            {{ $d->bed_number.' (I-DV-L)'  }}
+                                                        @break
+
+                                                        @case(2)
+                                                            {{ $d->bed_number.' (I-DV-B)'  }}
+                                                        @break
+
+                                                        @case(3)
+                                                            {{ $d->bed_number.' (I-DV-D)'  }}
+                                                        @break
+
+                                                        @case(4)
+                                                            {{ $d->bed_number.' (I-DV-H)'  }}
+                                                        @break
+
+                                                        @case(5)
+                                                            {{ $d->bed_number.' (I-DV-DH)'  }}
+                                                        @break
+
+                                                        @case(6)
+                                                            {{ $d->bed_number.' (I-DV-P)'  }}
                                                         @break
 
                                                         @default
-                                                            {{ $d->bed_number.' (I-R), '  }}
+                                                            {{ $d->bed_number.' (I-DV)'  }}
                                                     @endswitch
                                                 @endif
 
                                                 @if($d->type_pack == 2)
-                                                    @switch($d->type_diet_renal)
+                                                    @switch($d->type_diet_de_viaje)
                                                         @case(1)
-                                                            {{ $d->bed_number.' (E-RD), '  }}
+                                                            {{ $d->bed_number.' (E-DV-L)'  }}
+                                                        @break
+
+                                                        @case(2)
+                                                            {{ $d->bed_number.' (E-DV-B)'  }}
+                                                        @break
+
+                                                        @case(3)
+                                                            {{ $d->bed_number.' (E-DV-D)'  }}
+                                                        @break
+
+                                                        @case(4)
+                                                            {{ $d->bed_number.' (E-DV-H)'  }}
+                                                        @break
+
+                                                        @case(5)
+                                                            {{ $d->bed_number.' (E-DV-DH)'  }}
+                                                        @break
+
+                                                        @case(6)
+                                                            {{ $d->bed_number.' (E-DV-P)'  }}
                                                         @break
 
                                                         @default
-                                                            {{ $d->bed_number.' (E-R), '  }}
+                                                            {{ $d->bed_number.' (E-DV)'  }}
                                                     @endswitch
                                                 @endif
 
                                                 @if($d->type_pack == 3)
                                                     @switch($d->type_diet_renal)
                                                         @case(1)
-                                                            <strong>{{ $d->bed_number.' (RD), '  }}</strong>
+                                                            <strong>{{ $d->bed_number.' (DV-L)'  }}</strong>
+                                                        @break
+
+                                                        @case(2)
+                                                            <strong>{{ $d->bed_number.' (DV-B)'  }}</strong>
+                                                        @break
+
+                                                        @case(3)
+                                                            <strong>{{ $d->bed_number.' (DV-D)'  }}</strong>
+                                                        @break
+
+                                                        @case(4)
+                                                            <strong>{{ $d->bed_number.' (DV-H)'  }}</strong>
+                                                        @break
+
+                                                        @case(5)
+                                                            <strong>{{ $d->bed_number.' (DV-DH)'  }}</strong>
+                                                        @break
+
+                                                        @case(6)
+                                                            <strong>{{ $d->bed_number.' (DV-P)'  }}</strong>
                                                         @break
 
                                                         @default
-                                                            <strong>{{ $d->bed_number.' (R), '}}</strong>
+                                                            <strong>{{ $d->bed_number.' (DV)'  }}</strong>
+
                                                     @endswitch
                                                 @endif
 
                                                 @if($d->type_pack == 4)
                                                     @switch($d->type_diet_renal)
                                                         @case(1)
-                                                            <strong>{{ $d->bed_number.' (I-RD), '  }}</strong>
+                                                            <strong>{{ $d->bed_number.' (I-DV-L)'  }}</strong>
+                                                        @break
+
+                                                        @case(2)
+                                                            <strong>{{ $d->bed_number.' (I-DV-B)'  }}</strong>
+                                                        @break
+
+                                                        @case(3)
+                                                            <strong>{{ $d->bed_number.' (I-DV-D)'  }}</strong>
+                                                        @break
+
+                                                        @case(4)
+                                                            <strong>{{ $d->bed_number.' (I-DV-H)'  }}</strong>
+                                                        @break
+
+                                                        @case(5)
+                                                            <strong>{{ $d->bed_number.' (I-DV-DH)'  }}</strong>
+                                                        @break
+
+                                                        @case(6)
+                                                            <strong>{{ $d->bed_number.' (I-DV-P)'  }}</strong>
                                                         @break
 
                                                         @default
-                                                            <strong>{{ $d->bed_number.' (I-R), '}}</strong>
+                                                            <strong>{{ $d->bed_number.' (I-DV)'  }}</strong>
+
                                                     @endswitch
                                                 @endif
 
                                                 @if($d->type_pack == 5)
                                                     @switch($d->type_diet_renal)
                                                         @case(1)
-                                                            <strong>{{ $d->bed_number.' (E-RD), '  }}</strong>
+                                                            <strong>{{ $d->bed_number.' (E-DV-L)'  }}</strong>
+                                                        @break
+
+                                                        @case(2)
+                                                            <strong>{{ $d->bed_number.' (E-DV-B)'  }}</strong>
+                                                        @break
+
+                                                        @case(3)
+                                                            <strong>{{ $d->bed_number.' (E-DV-D)'  }}</strong>
+                                                        @break
+
+                                                        @case(4)
+                                                            <strong>{{ $d->bed_number.' (E-DV-H)'  }}</strong>
+                                                        @break
+
+                                                        @case(5)
+                                                            <strong>{{ $d->bed_number.' (E-DV-DH)'  }}</strong>
+                                                        @break
+
+                                                        @case(6)
+                                                            <strong>{{ $d->bed_number.' (E-DV-P)'  }}</strong>
                                                         @break
 
                                                         @default
-                                                            <strong>{{ $d->bed_number.' (E-R), '}}</strong>
+                                                            <strong>{{ $d->bed_number.' (E-DV)'  }}</strong>
                                                     @endswitch
                                                 @endif
 
                                                 @if($d->type_pack == 0 && $d->type_diet_renal == 0)
-                                                    {{ $d->bed_number." (R), " }}
+                                                    {{ $d->bed_number." (DV)" }}
                                                 @endif
-                                            @break
 
-                                            @case(21)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-BP, )'  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-BP, )'  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (BP, )'  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-BP, )'  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-BP, )'  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (BP, )" }}
-                                                @endswitch
-                                            @break
-
-                                            @case(22)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-BF, )'  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-BF, )'  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (BF, )'  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-BF, )'  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-BF, )'  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (BF, )" }}
-                                                @endswitch
-                                            @break
-
-                                            @case(23)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-BK, )'  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-BK, )'  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (BK, )'  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-BK, )'  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-BK, )'  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (BK, )" }}
-                                                @endswitch
-                                            @break
-
-                                            @case(24)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-C, )'  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-C, )'  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (C, )'  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-C, )'  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-C, )'  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (C, )" }}
-                                                @endswitch
-                                            @break
-
-                                            @case(25)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-AU, )'  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-AU, )'  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (AU, )'  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-AU, )'  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-AU, )'  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (AU, )" }}
-                                                @endswitch
-                                            @break
-
-                                            @case(26)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-AK, )'  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-AK, )'  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (AK, )'  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-AK, )'  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-AK, )'  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (AK, )" }}
-                                                @endswitch
-                                            @break
-
-                                            @case(27)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-SL), '  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-SL), '  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (SL), '  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-SL), '  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-SL), '  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (SL), " }}
-                                                @endswitch
-                                            @break
-
-                                            @case(28)
-                                                @switch($d->type_pack)
-                                                    @case(1)
-                                                        {{ $d->bed_number.' (I-DV), '  }}
-                                                    @break
-
-                                                    @case(2)
-                                                        {{ $d->bed_number.' (E-DV), '  }}
-                                                    @break
-
-                                                    @case(3)
-                                                        <strong> {{ $d->bed_number.' (DV), '  }} </strong>
-                                                    @break
-
-                                                    @case(4)
-                                                        <strong> {{ $d->bed_number.' (I-DV), '  }} </strong>
-                                                    @break
-
-                                                    @case(5)
-                                                        <strong> {{ $d->bed_number.' (E-DV), '  }} </strong>
-                                                    @break
-
-                                                    @default
-                                                        {{ $d->bed_number." (DV), " }}
-                                                @endswitch
                                             @break
 
                                         @endswitch
 
-                                        @if($d->type_pack == 0 )
-                                            {{ $d->bed_number.', '  }}
-                                        @endif
+                                        
+
+                                    
+
+                                        
                                     @endif
                                 @endif
                             @endforeach
@@ -2694,10 +3009,11 @@
                         <TD colspan="2">
                             @foreach($details as $d)
                                 @if($d->iddiet == "18" && $d->iddiet_request == $dr->id)
-                                    @if($loop->last || $loop->count = 1)
-                                        {{ $d->bed_number }}
-                                    @else
+                                    @if(!$loop->last)
                                         {{ $d->bed_number.', ' }}
+                                    @else
+                                        {{ $d->bed_number }}
+                                    
                                     @endif
                                 @endif
                             @endforeach

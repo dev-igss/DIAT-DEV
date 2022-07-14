@@ -123,6 +123,8 @@ class DietRequestsController extends Controller
             return view('admin.diet_request.add', $data);
         endif;
 
+        
+
 
     }
 
@@ -204,6 +206,7 @@ class DietRequestsController extends Controller
                     $idcaracteristica2=$request->get('idcaracteristica2');
                     $idcaracteristica3=$request->get('idcaracteristica3');
                     $idcaracteristica4=$request->get('idcaracteristica4');
+                    $idcaracteristica5=$request->get('idcaracteristica5');
 
                     $cont=0;
 
@@ -217,6 +220,7 @@ class DietRequestsController extends Controller
                         $detalle->type_diet_1=$idcaracteristica2[$cont];
                         $detalle->type_diet_hiposodicas=$idcaracteristica3[$cont];
                         $detalle->type_diet_renal=$idcaracteristica4[$cont];
+                        $detalle->type_diet_de_viaje=$idcaracteristica5[$cont];
                         $detalle->save();
                         $cont=$cont+1;
 
@@ -287,24 +291,30 @@ class DietRequestsController extends Controller
                     $idcaracteristica2=$request->get('idcaracteristica2');
                     $idcaracteristica3=$request->get('idcaracteristica3');
                     $idcaracteristica4=$request->get('idcaracteristica4');
+                    $idcaracteristica5=$request->get('idcaracteristica5');
 
                     $cont=0;
+                    $cont_npo=0;
 
                     while ($cont<count($idarticulo)) {
                         $detalle=new DietRequestDetail();
                         $detalle->iddiet_request=$ingreso->id;
                         $detalle->iddiet=$idarticulo[$cont];
+                        if($idarticulo[$cont] == 18):
+                            $cont_npo=$cont_npo+1;
+                        endif;
                         $detalle->bed_number=$cantidad[$cont];
                         //$detalle->specify=$especificar[$cont];
                         $detalle->type_pack=$idcaracteristica1[$cont];
                         $detalle->type_diet_1=$idcaracteristica2[$cont];
                         $detalle->type_diet_hiposodicas=$idcaracteristica3[$cont];
                         $detalle->type_diet_renal=$idcaracteristica4[$cont];
+                        $detalle->type_diet_de_viaje=$idcaracteristica5[$cont];
                         $detalle->save();
                         $cont=$cont+1;
                     }
 
-                    $ingreso->total_diets = $cont;
+                    $ingreso->total_diets = $cont-$cont_npo;
 
                     DB::commit();
 

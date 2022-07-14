@@ -110,6 +110,14 @@
                             </div>
                         </div>
 
+                        <div class="col-md-3 mtop16" id="div-tipo-dietas-de-viaje">
+                            <label for="cantidad"><strong> Tipo Dieta De Viaje: </strong></label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
+                                {!! Form::select('pidarticulo5', getTypeDietDeViaje('list', null), null,['class'=>'form-select', 'id' => 'pidarticulo5']) !!}
+                            </div>
+                        </div>
+
                         <div class="col-md-1" style="margin-top: 48px;">
                         <div class="form-group">
                             <button type="button" id="bt_add" class="btn btn-primary">
@@ -124,12 +132,13 @@
                                 <th rowspan="2"><strong> ELIMINAR </strong></th>
                                 <th rowspan="2"><strong> DIETA </strong></th>
                                 <th rowspan="2"><strong> CAMA </strong></th>
-                                <th colspan="4"><strong> CARACTERISTICAS </strong></th>
+                                <th colspan="5"><strong> CARACTERISTICAS </strong></th>
                                 <tr>
                                     <th>NO.1</th>
                                     <th>NO.2</th>
                                     <th>NO.3</th>
                                     <th>NO.4</th>
+                                    <th>NO.5</th>
                                 </tr>
                             </thead>
 
@@ -172,6 +181,9 @@
             var tipo_dietas_renal = document.getElementById('div-tipo-dietas-renal');
             tipo_dietas_renal.hidden = true;
 
+            var tipo_dietas_de_viaje = document.getElementById('div-tipo-dietas-de-viaje');
+            tipo_dietas_de_viaje.hidden = true;
+
             $('#pidarticulo').change(function(){
                 /*if(typediet.value  == 17){
                     bed.hidden = true;
@@ -200,6 +212,11 @@
                     tipo_dietas_renal.hidden = true;
                 }
 
+                if(typediet.value == 28){
+                    tipo_dietas_de_viaje.hidden = false;
+                }else{
+                    tipo_dietas_de_viaje.hidden = true;
+                }
 
 
             });
@@ -225,9 +242,11 @@
             caracteristica3=$("#pidarticulo3 option:selected").text();
             idcaracteristica4=$("#pidarticulo4").val();
             caracteristica4=$("#pidarticulo4 option:selected").text();
+            idcaracteristica5=$("#pidarticulo5").val();
+            caracteristica5=$("#pidarticulo5 option:selected").text();
 
             if (idarticulo!="" && cantidad > 0){
-                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td> <td><input type="hidden" name="idcaracteristica1[]" value="'+idcaracteristica1+'">'+caracteristica1+'</td> <td><input type="hidden" name="idcaracteristica2[]" value="'+idcaracteristica2+'">'+caracteristica2+'</td> <td><input type="hidden" name="idcaracteristica3[]" value="'+idcaracteristica3+'">'+caracteristica3+'</td> <td><input type="hidden" name="idcaracteristica4[]" value="'+idcaracteristica4+'">'+caracteristica4+'</td></tr>';
+                var fila='<tr class="selected" id="fila'+cont+'"><td><button type="button" class="btn btn-warning" onclick="eliminar('+cont+');">X</button></td><td><input type="hidden" name="idarticulo[]" value="'+idarticulo+'">'+articulo+'</td><td><input type="hidden" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td> <td><input type="hidden" name="idcaracteristica1[]" value="'+idcaracteristica1+'">'+caracteristica1+'</td> <td><input type="hidden" name="idcaracteristica2[]" value="'+idcaracteristica2+'">'+caracteristica2+'</td> <td><input type="hidden" name="idcaracteristica3[]" value="'+idcaracteristica3+'">'+caracteristica3+'</td> <td><input type="hidden" name="idcaracteristica4[]" value="'+idcaracteristica4+'">'+caracteristica4+'</td> <td><input type="hidden" name="idcaracteristica5[]" value="'+idcaracteristica5+'">'+caracteristica5+'</td></tr>';
                 cont++;
                 limpiar();
                 evaluar();
@@ -243,6 +262,7 @@
             $("#pidarticulo2").val("");
             $("#pidarticulo3").val("");
             $("#pidarticulo4").val("");
+            $("#pidarticulo5").val("");
         }
 
         function evaluar()

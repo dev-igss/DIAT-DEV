@@ -101,6 +101,24 @@
         endif;
     }
 
+    function getTypeDietDeViaje($mode, $id){
+        $roles = [
+            '0' => 'Sin Selección',
+            '1' => 'Libre',
+            '2' => 'Blanda',
+            '3' => 'Diabética',
+            '4' => 'Hiposodica',
+            '5' => 'Diabética/Hiposodica',
+            '6' => 'Papilla'
+        ];
+
+        if(!is_null($mode)):
+            return $roles;
+        else:
+            return $roles[$id];
+        endif;
+    }
+
     function getUserStatusArray($mode, $id){
         $status = [
             '0' => 'Suspendido',
