@@ -2084,7 +2084,7 @@
                         <TD colspan="2" height="15">
                             @foreach($details as $d)
                                 @if($d->iddiet >= 19 && $d->iddiet <= 28 && $d->iddiet_request == $dr->id)
-                                    @if($loop->last )
+                                    @if(!$loop->last )
 
                                         @switch($d->iddiet)
                                             @case(19)
