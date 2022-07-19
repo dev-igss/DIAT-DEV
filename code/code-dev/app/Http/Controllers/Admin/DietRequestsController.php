@@ -434,7 +434,7 @@ class DietRequestsController extends Controller
 
     public function getDietRequestPdfLote($jornada){
         $hoy = Carbon::now()->format('Y-m-d');
-        $diet_request = DietRequest::whereDate('created_at', '2022-07-18')->where('idjourney', 3)->where('status',2)->get();
+        $diet_request = DietRequest::whereDate('created_at', $hoy)->where('idjourney', $jornada)->where('status',1)->get();
         $details = DietRequestDetail::all();
 
 
