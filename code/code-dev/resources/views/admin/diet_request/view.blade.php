@@ -130,7 +130,7 @@
 
                                 @endforeach
                                 <tr>
-                                    <td colspan="5"></td>
+                                    <td colspan="6"></td>
                                     <td><strong>TOTAL DIETAS: </strong>{{ $diet_request->total_diets }}</td>
                                 </tr>
                             </tbody>
