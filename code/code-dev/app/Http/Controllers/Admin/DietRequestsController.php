@@ -419,13 +419,20 @@ class DietRequestsController extends Controller
                  ->whereIn('iddiet', ['19','20','21','22','23','24','25','26','27','28'])
                  ->get();
 
+        $subtotales_diabeticas = DB::table('diet_request_details')
+                 ->select(DB::raw('count(iddiet) as subtotal'))
+                 ->where('iddiet_request', $iddiet_request)
+                 ->whereIn('iddiet', ['8','9','10','11'])
+                 ->get();
+
         //return $subtotales_otras;
 
         $data = [
             'diet_request' => $diet_request,
             'details' => $details,
             'subtotales' => $subtotales,
-            'subtotales_otras' => $subtotales_otras
+            'subtotales_otras' => $subtotales_otras,
+            'subtotales_diabeticas' => $subtotales_diabeticas
         ];
 
         $pdf = PDF::loadView('admin.diet_request.print',$data)->setPaper('a4', 'portrait');
@@ -452,13 +459,20 @@ class DietRequestsController extends Controller
                     ->groupBy('iddiet_request')
                     ->get();
 
-        //return $subtotales_otras;
+        $subtotales_diabeticas = DB::table('diet_request_details')
+                    ->select('iddiet_request','iddiet', DB::raw('count(iddiet) as subtotal'))
+                    ->whereIn('iddiet', ['8','9','10','11'])
+                    ->groupBy('iddiet_request')
+                    ->get();
+
+        //return $subtotales_diabeticas;
 
         $data = [
             'diet_request' => $diet_request,
             'details' => $details,
             'subtotales' => $subtotales,
-            'subtotales_otras' => $subtotales_otras
+            'subtotales_otras' => $subtotales_otras,
+            'subtotales_diabeticas' => $subtotales_diabeticas
         ];
 
         $pdf = PDF::loadView('admin.diet_request.print_lote',$data)->setPaper('a4', 'portrait');
