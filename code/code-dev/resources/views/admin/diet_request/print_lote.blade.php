@@ -1459,25 +1459,11 @@
                             @endforeach
                         </TD>
                         <TD ROWSPAN="4" colspan="2" ALIGN="center">
-                            <?php $sum_diabeticas = 0 ?>
-                            @foreach($subtotales as $s)
-                                @if($s->iddiet == "8" && $d->iddiet_request == $dr->id)
-                                    <?php $sum_diabeticas += $s->subtotal ?>
-                                @endif
-                                @if($s->iddiet == "9" && $d->iddiet_request == $dr->id)
-                                    <?php $sum_diabeticas += $s->subtotal ?>
-                                @endif
-                                @if($s->iddiet == "10" && $d->iddiet_request == $dr->id)
-                                    <?php $sum_diabeticas += $s->subtotal ?>
-                                @endif
-                                @if($s->iddiet == "11" && $d->iddiet_request == $dr->id)
-                                    <?php $sum_diabeticas += $s->subtotal ?>
+                            @foreach($subtotales_diabeticas as $s)
+                                @if($s->iddiet_request == $dr->id)
+                                    {{ $s->subtotal }}
                                 @endif
                             @endforeach
-
-                            @if($sum_diabeticas > 0)
-                                {{ $sum_diabeticas }}
-                            @endif
                         </TD>
                     </TR>
 
