@@ -236,6 +236,7 @@
                     'diet_request_print' => 'Puede imprimir solicitudes de dietas.',
                     'diet_request_print_journey' => 'Puede imprimir solicitudes de dietas por jornada.',
                     'diet_request_served' => 'Puede marcar como servidas las solicitudes de dietas.',
+                    'diet_request_change_diets_served' => 'Puede modificar la cantidad de dietas servidas.',
                     'diet_request_delete' => 'Puede eliminar solicitudes de dietas.'
                 ]
             ],
