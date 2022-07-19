@@ -49,6 +49,7 @@
                             <td><strong> SOLICITADA </strong></td>
                             <td><strong> JORNADA </strong></td>
                             <td><strong> SERVICIO </strong></td>
+                            <td><strong> DIETAS</strong></td>
                             <td><strong> ESTADO </strong></td>
                         </tr>
                     </thead>
@@ -64,7 +65,7 @@
                                             <a href="{{ url('/admin/solicitud_dieta/'.$dr->id.'/imprimir') }}" target="_blank" data-toogle="tooltrip" data-placement="top" title="Generar PDF"><i class="fas fa-file-pdf"></i></a>
                                         @endif
                                         @if(kvfj(Auth::user()->permissions, 'diet_request_served') && $dr->status != '2' && $dr->status != '3')
-                                            <a href="#" data-action="servida" data-path="admin/solicitud_dieta" data-object="{{ $dr->id }}" class="btn-deleted" data-toogle="tooltrip" data-placement="top" title="Dietas Servidas" ><i class="fas fa-clipboard-check"></i></a>
+                                            <a href="#" data-action="servida" data-servicio="{{ $dr->service->name  }}" data-dietas="{{ $dr->total_diets }}" data-path="admin/solicitud_dieta" data-object="{{ $dr->id }}" class="btn-deleted" data-toogle="tooltrip" data-placement="top" title="Dietas Servidas" ><i class="fas fa-clipboard-check"></i></a>
                                         @endif
                                         @if(kvfj(Auth::user()->permissions, 'diet_request_delete') && $dr->status != '2' && $dr->status != '3')
                                             <a href="#" data-action="anular" data-path="admin/solicitud_dieta" data-object="{{ $dr->id }}" class="btn-deleted" data-toogle="tooltrip" data-placement="top" title="Anular Solicitud" ><i class="fas fa-trash-alt"></i></a>
@@ -75,6 +76,13 @@
                                 <td>{{ $dr->journey->name }}</td>
                                 <td>{{ $dr->service->name }}<br>
                                     {{ $dr->user->ibm.' - '.$dr->user->name.' '.$dr->user->lastname }}
+                                </td>
+                                <td>
+                                    Solicitadas: {{ $dr->total_diets }}
+                                    <br>
+                                    @if($dr->status == '2')
+                                        Servidas: {{ $dr->diets_served}}
+                                    @endif
                                 </td>
                                 <td>{{ getDietStatusArray(null, $dr->status) }}</td>
                             </tr>

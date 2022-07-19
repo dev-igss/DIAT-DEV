@@ -223,7 +223,7 @@
                     tipo_dietas_renal.hidden = true;
                 }
 
-                if(typediet.value == 28){
+                if(typediet.value == 28 || typediet.value == 29){
                     tipo_dietas_de_viaje.hidden = false;
                 }else{
                     tipo_dietas_de_viaje.hidden = true;
