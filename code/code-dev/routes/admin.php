@@ -20,7 +20,7 @@
         Route::get('solicitud_dieta/solicitar', 'Admin\DietRequestsController@getDietRequestAdd')->name('diet_request_add');
         Route::post('solicitud_dieta/solicitar', 'Admin\DietRequestsController@postDietRequestAdd')->name('diet_request_add');
         Route::get('solicitud_dieta/{id}/servida/{cantidad}', 'Admin\DietRequestsController@getDietRequestServida')->name('diet_request_served');
-        Route::get('solicitud_dieta/{id}/cambio/dietas_servidas/{cantidad}', 'Admin\DietRequestsController@getDietRequestChangeDietsServida')->name('diet_request_change_diets_served');
+        Route::get('solicitud_dieta/{id}/cambio_dietas_servidas/{cantidad}', 'Admin\DietRequestsController@getDietRequestChangeDietsServida')->name('diet_request_change_diets_served');
         Route::get('solicitud_dieta/{id}/detalles', 'Admin\DietRequestsController@getDietRequestView')->name('diet_request_view');
         Route::get('solicitud_dieta/{id}/imprimir', 'Admin\DietRequestsController@getDietRequestPdf')->name('diet_request_view');
         Route::get('solicitud_dieta/impresion_lote/{jornada}', 'Admin\DietRequestsController@getDietRequestPdfLote')->name('diet_request_view');

@@ -92,7 +92,10 @@ function delete_object(e){
     var action = this.getAttribute('data-action');
     var path = this.getAttribute('data-path');
     var nombre_servicio = this.getAttribute('data-servicio'); 
-    var dietas_servidas = this.getAttribute('data-dietas'); 
+    var dietas_solicitadas= this.getAttribute('data-dietas'); 
+    var dietas_servidas = this.getAttribute('data-dietas-served'); 
+
+    
 
     if(action == "impresion_lote"){
         var url = base + '/' + path + '/' + action;
@@ -122,6 +125,12 @@ function delete_object(e){
         icon = "warning";
     }
 
+    if(action == "cambio_dietas_servidas"){
+        title = "¿Esta seguro de cambiar la cantidad de dietas servidas esta solicitud?";
+        text = "Recuerde verificar la cantidad de dietas a servir, antes de guardar.";
+        icon = "warning";
+    }
+
     if(action == "impresion_lote"){
         title = "¡Impresion de Solicitudes de Dietas por Lote!";
         text = "Seleccione la jornda del dia que desea imprimir por lote.";
@@ -144,7 +153,7 @@ function delete_object(e){
         }).then((result) =>{
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Ingrese la cantidad de dietas a servir en esta solicitud <br/><br/>Servicio: "+nombre_servicio+"<br/>Diestas Solicitadas: "+dietas_servidas,
+                    title: "Ingrese la cantidad de dietas a servir en esta solicitud <br/><br/>Servicio: "+nombre_servicio+"<br/>Diestas Solicitadas: "+dietas_solicitadas,
                     icon: "info",
                     confirmButtonText: 'Aceptar',
                     showDenyButton: true,
@@ -181,7 +190,57 @@ function delete_object(e){
             }
         });
 
-    }else if(action == "impresion_lote"){
+    }
+    if(action == "cambio_dietas_servidas"){
+        Swal.fire({
+            title: title,
+            text: text,
+            icon: icon,
+            showCancelButton: true,
+            confirmButtonText: 'Aceptar',
+        }).then((result) =>{
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Ingrese la cantidad de dietas a servir en esta solicitud <br/>Dietas Ya Servidas: "+dietas_servidas,
+                    icon: "info",
+                    confirmButtonText: 'Aceptar',
+                    showDenyButton: true,
+                    denyButtonText: 'Cancelar',
+                    focusConfirm:true,
+                    html:
+                    '<label> <strong> Cantidad de dietas </strong> </label>'
+                    +
+                   '<br/><input type="number" min="0" id="swal-input3" class="swal2-input" style="width:100%;">',
+                   preConfirm: () => {
+                        return [
+                            cantidad_dietas = document.getElementById('swal-input3').value
+                        ]
+                    }
+                }).then((result) =>{
+                    //console.log(cantidad_dietas);
+                    if (result.isConfirmed && cantidad_dietas.length === 0) {
+
+                        window.alert("Ingrese una cantidad de dietas");
+
+                    }
+                    
+                    if (result.isConfirmed && cantidad_dietas.length > 0){
+                        window.location.href = url+"/"+cantidad_dietas;
+                        //console.log(url+"/"+cantidad_dietas);
+                    }
+
+                    if (result.isDenied) {    
+                        window.alert("No se registraran dietas servidas");
+                    }
+
+
+                });
+            }
+        });
+
+    }
+    
+    else if(action == "impresion_lote"){
         Swal.fire({
             title: title,
             text: text,

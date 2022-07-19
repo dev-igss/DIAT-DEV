@@ -371,6 +371,35 @@ class DietRequestsController extends Controller
 
     }
 
+
+    public function getDietRequestChangeDietsServida($id, $cantidad){
+
+        $dr = DietRequest::findOrFail($id);
+        $dietas_servidas_ant = $dr->diets_served;
+
+        if($cantidad > $dr->total_diets){
+            return back()->with('messages', '¡Esta sirviendo más dietas de las solicitadas, verifique sus datos!.')
+                        ->with('typealert', 'warning');
+        }else{
+            $dr->diets_served = $cantidad;
+            $dr->iduser_served = Auth::id();
+            $dr->status = 2;
+
+            if($dr->save()):
+                $b = new Bitacora;
+                $b->action = "Dieta con id: ".$dr->id." fue modificada la cantidad de dietas servidas, de: ".$dietas_servidas_ant." dietas a: " .$cantidad." dietas";
+                $b->user_id = Auth::id();
+                $b->save();
+
+                return back()->with('messages', '¡Solicitud de dieta servida y guardada con exito!.')
+                    ->with('typealert', 'success');
+            endif;
+        }
+
+
+
+    }
+
     public function getDietRequestView($id){
         $diet_request = DietRequest::findOrFail($id);
         $iddiet_request = $diet_request->id;
@@ -454,11 +483,18 @@ class DietRequestsController extends Controller
 
         //return $subtotales_otras;
 
+        $subtotales_diabeticas = DB::table('diet_request_details')
+                    ->select('iddiet_request', DB::raw('count(iddiet) as subtotal'))
+                    ->whereIn('iddiet', ['8','9','10','11'])
+                    ->groupBy('iddiet_request')
+                    ->get();
+
         $data = [
             'diet_request' => $diet_request,
             'details' => $details,
             'subtotales' => $subtotales,
-            'subtotales_otras' => $subtotales_otras
+            'subtotales_otras' => $subtotales_otras,
+            'subtotales_diabeticas' => $subtotales_diabeticas
         ];
 
         $pdf = PDF::loadView('admin.diet_request.print_lote',$data)->setPaper('a4', 'portrait');
