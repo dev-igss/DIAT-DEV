@@ -462,9 +462,8 @@ class DietRequestsController extends Controller
     }
 
     public function getDietRequestPdfLote($jornada){
-        $jornada1 = $jornada;
         $hoy = Carbon::now()->format('Y-m-d');
-        $diet_request = DietRequest::whereDate('created_at', $hoy)->where('idjourney',$jornada1)->where('status',1)->get();
+        $diet_request = DietRequest::whereDate('created_at', $hoy)->where('idjourney', $jornada)->where('status',1)->get();
         $details = DietRequestDetail::all();
 
 
@@ -499,6 +498,6 @@ class DietRequestsController extends Controller
         ];
 
         $pdf = PDF::loadView('admin.diet_request.print_lote',$data)->setPaper('a4', 'portrait');
-        return $pdf->download('ING-7.pdf');
+        return $pdf->stream('ING-7.pdf');
     }
 }
