@@ -607,6 +607,25 @@
                         @if($d->iddiet == "4")
                             @if(!$loop->last)
 
+                                @if($d->type_pack == 0)
+                                    @switch($d->type_diet_1)
+                                        @case(1)
+                                            {{ $d->bed_number.' (D), '  }}
+                                        @break
+
+                                        @case(2)
+                                            {{ $d->bed_number.' (H), '  }}
+                                        @break
+
+                                        @case(3)
+                                            {{ $d->bed_number.' (DH), '  }}
+                                        @break
+
+                                        @default
+                                            {{ $d->bed_number.', '  }}
+                                    @endswitch
+                                @endif
+
                                 @if($d->type_pack == 1)
                                     @switch($d->type_diet_1)
                                         @case(1)
@@ -702,11 +721,26 @@
                                     @endswitch
                                 @endif
 
-                                @if($d->type_pack == 0 && $d->type_diet_1 == 0)
-                                    {{ $d->bed_number.', '  }}
-                                @endif
-
                             @else
+
+                                @if($d->type_pack == 0)
+                                    @switch($d->type_diet_1)
+                                        @case(1)
+                                            {{ $d->bed_number.' (D)'  }}
+                                        @break
+
+                                        @case(2)
+                                            {{ $d->bed_number.' (H)'  }}
+                                        @break
+
+                                        @case(3)
+                                            {{ $d->bed_number.' (DH)'  }}
+                                        @break
+
+                                        @default
+                                            {{ $d->bed_number  }}
+                                    @endswitch
+                                @endif
 
                                 @if($d->type_pack == 1)
                                     @switch($d->type_diet_1)
@@ -802,11 +836,6 @@
                                             <strong>{{ $d->bed_number.' (E)'}}</strong>
                                     @endswitch
                                 @endif
-
-                                @if($d->type_pack == 0 && $d->type_diet_1 == 0)
-                                    {{ $d->bed_number  }}
-                                @endif
-
                            
 
                             @endif
