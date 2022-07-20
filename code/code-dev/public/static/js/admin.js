@@ -190,8 +190,7 @@ function delete_object(e){
             }
         });
 
-    }
-    if(action == "cambio_dietas_servidas"){
+    }    else if(action == "cambio_dietas_servidas"){
         Swal.fire({
             title: title,
             text: text,

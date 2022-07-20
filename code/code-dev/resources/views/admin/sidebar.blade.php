@@ -45,7 +45,7 @@
 
             @if(kvfj(Auth::user()->permissions, 'diet_requests') && Auth::user()->role != 5)
                 <li>
-                    <a href="{{ url('/admin/solicitud_dietas/1') }}" class="lk-diet_requests lk-diet_request_add lk-diet_request_view lk-diet_request_delete"><i class="fa-solid fa-receipt"></i> Solicitud de Dietas</a>
+                    <a href="{{ url('/admin/solicitud_dietas/1') }}" class="lk-diet_requests lk-diet_request_add lk-diet_request_view lk-diet_request_delete lk-diet_request_served lk-diet_request_change_diets_served"><i class="fa-solid fa-receipt"></i> Solicitud de Dietas</a>
                 </li>
             @endif
 
