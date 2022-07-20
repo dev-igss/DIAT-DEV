@@ -499,6 +499,6 @@ class DietRequestsController extends Controller
         ];
 
         $pdf = PDF::loadView('admin.diet_request.print_lote',$data)->setPaper('a4', 'portrait');
-        return $pdf->stream('ING-7.pdf');
+        return $pdf->download('ING-7.pdf');
     }
 }
