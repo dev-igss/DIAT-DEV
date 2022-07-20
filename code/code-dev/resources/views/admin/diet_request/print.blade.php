@@ -3069,7 +3069,9 @@
                 </TD>
                 <TD ROWSPAN="3" colspan="2">
                     @foreach($subtotales_otras as $s)                        
-                        {{ $s->subtotal }}                        
+                        @if($s->subtotal > 0)
+                            {{ $s->subtotal }}
+                        @endif                      
                     @endforeach
                 </TD>
 

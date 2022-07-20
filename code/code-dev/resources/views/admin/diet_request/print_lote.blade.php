@@ -1490,7 +1490,9 @@
                         <TD ROWSPAN="4" colspan="2" ALIGN="center">
                             @foreach($subtotales_diabeticas as $s)
                                 @if($s->iddiet_request == $dr->id)
-                                    {{ $s->subtotal }}
+                                    @if($s->subtotal > 0)
+                                        {{ $s->subtotal }}
+                                    @endif
                                 @endif
                             @endforeach
                         </TD>
@@ -3058,7 +3060,9 @@
                         <TD ROWSPAN="3" colspan="2">
                             @foreach($subtotales_otras as $s)
                                 @if($s->iddiet_request == $dr->id)
-                                    {{ $s->subtotal }}
+                                    @if($s->subtotal > 0)
+                                        {{ $s->subtotal }}
+                                    @endif
                                 @endif
                             @endforeach
                         </TD>
