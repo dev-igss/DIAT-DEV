@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Models\Diet, App\Http\Models\Bitacora, App\Http\Models\Journey, App\Http\Models\Service,  App\Http\Models\DietRequest, App\Http\Models\DietRequestDetail, App\Http\Models\DietRequestOut;
 use Carbon\Carbon, Auth, Validator, Str, Config, Session, DB, Response, File, Image, PDF;
+//use Elibyy\TCPDF\Facades\TCPDF;
 
 
 class DietRequestsController extends Controller
@@ -445,7 +446,7 @@ class DietRequestsController extends Controller
         $subtotales_otras = DB::table('diet_request_details')
                  ->select( DB::raw('count(iddiet) as subtotal'))
                  ->where('iddiet_request', $iddiet_request)
-                 ->whereIn('iddiet', ['19','20','21','22','23','24','25','26','27','28'])
+                 ->whereIn('iddiet', ['19','20','21','22','23','24','25','26','27','28','29'])
                  ->get();
 
         //return $subtotales_otras;
@@ -477,7 +478,7 @@ class DietRequestsController extends Controller
 
         $subtotales_otras = DB::table('diet_request_details')
                     ->select('iddiet_request', DB::raw('count(iddiet) as subtotal'))
-                    ->whereIn('iddiet', ['19','20','21','22','23','24','25','26','27','28'])
+                    ->whereIn('iddiet', ['19','20','21','22','23','24','25','26','27','28','29'])
                     ->groupBy('iddiet_request')
                     ->get();
 
