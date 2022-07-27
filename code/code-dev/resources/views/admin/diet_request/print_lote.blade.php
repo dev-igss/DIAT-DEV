@@ -1,5 +1,8 @@
 <!DOCTYPE>
 <html>
+<?php set_time_limit(0);
+ini_set("memory_limit",-1);
+ini_set('max_execution_time', 0); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -27,7 +30,7 @@
         }
     </style>
 
-    @foreach($diet_request as $dr)
+    @foreach($diet_request as $dr) 
 
         <body style="font-size: 14px; font-family: 'Roboto Slab', serif;">
 
@@ -654,6 +657,7 @@
                     <TR>
                         <TD colspan="2"></TD>
                     </TR>
+
 
                     <TR>
                         <TH ROWSPAN="2" colspan="2" ALIGN="center">Papilla (licuada/puré)</TH>
@@ -1539,7 +1543,6 @@
                         <TD colspan="2"></TD>
                     </TR>
 
-
                     <TR>
                         <TH ROWSPAN="4">DIABÉTICA</TH>
                         <TH> 1,500 Calorías</TH>
@@ -1891,7 +1894,6 @@
                     <TR>
                         <TD colspan="2"></TD>
                     </TR>
-
 
                     <TR>
                         <TH ROWSPAN="9">PEDIATRICAS</TH>
@@ -3610,13 +3612,16 @@
                         </TD>
                     </TR>
 
+ 
 
+
+                    
+
+                    
+
+                    
 
                 </TABLE>
-
-
-
-
 
 
         </body>
